@@ -1,0 +1,26 @@
+.page {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.header__title-image {
+  max-width: 173px;
+  max-height: 33px;
+}
+.header__title {
+}
+.header__divider {
+  max-width: 880px;
+}
+
+.profile {
+}
+.profile__content {
+}
+.profile__image {
+  border-radius: 100%;
+}
