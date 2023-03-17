@@ -11,32 +11,36 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="./favicon.ico" />
   </head>
-  <body>
-    <div class="page">
-      <main>
-        <header class="header">
+  <body class="page">
+    <main>
+      <header class="header">
+        <img
+          src="./images/headertitle.svg"
+          alt="Aroundtheus"
+          class="header__title-image"
+        />
+        <img
+          src="./images/headerdivider.svg"
+          alt="header divider"
+          class="header__divider"
+        />
+      </header>
+      <section class="profile">
+        <div class="profile__content">
           <img
-            src="./images/headertitle.svg"
-            alt="Aroundtheus"
-            class="header__title-image"
+            src="./images/jacques-cousteau.jpg"
+            alt="profile photo"
+            class="profile__image"
           />
-          <img
-            src="./images/headerdivider.svg"
-            alt="header divider"
-            class="header__divider"
-          />
-        </header>
-        <section class="profile">
-          <div class="profile__content">
-            <img
-              src="./images/jacques-cousteau.jpg"
-              alt="profile photo"
-              class="profile__image"
-            />
+          <div class="profile__info">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button class="profile__edit-button"></button>
+            <p class="profile__name-title">Explorer</p>
           </div>
-        </section>
-      </main>
-      <footer></footer>
-    </div>
+          <button class="profile__add-button"></button>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
   </body>
 </html>
