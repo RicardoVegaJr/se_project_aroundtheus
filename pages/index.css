@@ -23,16 +23,17 @@
 }
 
 .profile {
-  max-width: 880px;
-  padding: 0 200px 0 200px;
+  margin: 0;
+  padding: 0;
 }
 .profile__content {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 .profile__image {
-  margin: 40px 30px 51px 0;
+  margin: 40px 30px 51px 200px;
   border-radius: 100%;
   max-width: 120px;
   max-height: 120px;
@@ -81,15 +82,18 @@
   background-repeat: no-repeat;
   min-width: 150px;
   min-height: 50px;
-  margin: 75px 0 86px 165px;
+  margin: 75px 200px 86px 165px;
   border: 2px white solid;
+}
+
+.page__cards-container {
+  display: flex;
+  justify-content: center;
 }
 
 .page__cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-  padding-left: 200px;
-  padding-right: 200px;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px 17px;
 }
 
