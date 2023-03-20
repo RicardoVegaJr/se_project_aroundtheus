@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @import url(../vendors/normalize.css);
 @import url(../vendors/fonts/fonts.css);
 @import url(../blocks/page.css);
@@ -20,9 +27,18 @@
   }
 
   .profile__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
   .profile__image {
@@ -32,15 +48,22 @@
     max-height: 120px;
   }
   .profile__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 0;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     max-width: 500px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
   .content__cards {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr 17px 1fr;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px 17px;
   }
@@ -48,7 +71,9 @@
 
 @media screen and (max-width: 620px) {
   .content__cards {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;
   }
@@ -64,21 +89,35 @@
   .header__divider {
     width: 100%;
     margin: 0;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
     align-self: center;
     opacity: 0.7;
     border-bottom: 1px solid #545454;
   }
 
   .profile__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
   .profile__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 0;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     gap: 0;
     max-width: 320px;

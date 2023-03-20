@@ -1,10 +1,23 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .content__cards-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .content__cards {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 17px 1fr 17px 1fr;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px 17px;
 }
@@ -23,8 +36,14 @@
 }
 
 .content__card-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -36,6 +55,7 @@
   line-height: 29px;
   margin: 25px 0 25px 20px;
   color: #000000;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
