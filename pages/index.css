@@ -1,158 +1,9 @@
-.page {
-  max-width: 1280px;
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-}
-.header {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-}
-.header__title-image {
-  max-width: 173px;
-  max-height: 33px;
-  margin: 45px 0 41px 200px;
-}
-
-.header__divider {
-  width: 68.75%;
-  margin: 0;
-  align-self: center;
-  opacity: 0.7;
-  border-bottom: 1px solid #545454;
-}
-
-.profile {
-  margin: 0;
-  padding: 0;
-}
-.profile__content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.profile__image {
-  margin: 40px 30px 51px 200px;
-  border-radius: 100%;
-  max-width: 120px;
-  max-height: 120px;
-}
-.profile__info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 0;
-  align-content: center;
-  align-items: baseline;
-  grid-gap: 16px 18px;
-}
-.profile__name {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 42px;
-  line-height: 48px;
-  white-space: nowrap;
-  color: #ffffff;
-  margin: 0;
-}
-.profile__name-title {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #ffffff;
-  margin: 0;
-}
-.profile__edit-button {
-  background-image: url(../images/pen.svg);
-  background-position: center;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  width: 24px;
-  height: 24px;
-  border: 2px white solid;
-  margin: 0;
-}
-.profile__add-button {
-  background-image: url(../images/Vector@2x.svg);
-  background-position: center;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  min-width: 150px;
-  min-height: 50px;
-  margin: 75px 200px 86px 0px;
-  border: 2px white solid;
-}
-
-.page__cards-container {
-  display: flex;
-  justify-content: center;
-}
-
-.page__cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px 17px;
-}
-
-.page__card {
-  max-width: 282px;
-  max-height: 361px;
-  background-color: #ffffff;
-  border-radius: 5%;
-  overflow: hidden;
-}
-
-.page__card-image {
-  width: 282px;
-  height: 282px;
-}
-
-.page__card-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.page__card-title {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-  margin: 25px 0 25px 20px;
-  color: #000000;
-}
-
-.page__card-heart {
-  background-image: url(../images/HeartVector.svg);
-  background-position: center;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  height: 18px;
-  width: 21px;
-  border: none;
-  margin: 31px 30px 30px 28px;
-}
-
-.footer {
-  margin: 0;
-  padding: 0;
-}
-.footer__text {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #545454;
-  margin: 67px 0 60px 200px;
-  max-width: 318px;
-  max-height: 18px;
-}
+@import url(../vendors/normalize.css);
+@import url(../blocks/page.css);
+@import url(../blocks/header.css);
+@import url(../blocks/profile.css);
+@import url(../blocks/content.css);
+@import url(../blocks/footer.css);
 
 @media screen and (max-width: 1050px) {
   .profile__add-button {
@@ -185,7 +36,7 @@
     max-width: 340px;
   }
 
-  .page__cards {
+  .content__cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px 17px;
@@ -193,7 +44,7 @@
 }
 
 @media screen and (max-width: 620px) {
-  .page__cards {
+  .content__cards {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;
