@@ -24,7 +24,6 @@
 
 .content__card {
   max-width: 282px;
-  max-height: 361px;
   background-color: #ffffff;
   border-radius: 5%;
   overflow: hidden;
@@ -48,7 +47,7 @@
 }
 
 .content__card-title {
-  font-family: "Inter";
+  font-family: "Inter", sans-serif, "Times New Roman", Times, serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -70,4 +69,19 @@
   width: 21px;
   border: none;
   margin: 31px 30px 30px 28px;
+}
+
+@media screen and (max-width: 1050px) {
+  .content__cards {
+    -ms-grid-columns: 1fr 17px 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .content__cards {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+  }
 }
