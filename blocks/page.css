@@ -11,3 +11,7 @@
   padding: 0;
   background-color: #000000;
 }
+
+.page__section {
+  margin: 0 auto;
+}
