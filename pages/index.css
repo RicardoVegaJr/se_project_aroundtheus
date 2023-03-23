@@ -5,7 +5,7 @@
 * Browsers: last 4 version
 */
 
-@import url(../vendors/normalize.css);
+@import url(../vendors/fonts/normalize.css);
 @import url(../vendors/fonts/fonts.css);
 @import url(../blocks/page.css);
 @import url(../blocks/header.css);
