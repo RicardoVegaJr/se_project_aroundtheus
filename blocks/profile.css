@@ -147,6 +147,7 @@
   .profile__info {
     gap: 0;
     max-width: 320px;
+    align-items: center;
   }
   .profile__image {
     margin: 42px 99px 30px 101px;
@@ -156,13 +157,15 @@
     font-size: 22px;
     line-height: 27px;
     text-align: center;
-    margin: 0 10px 14px 62px;
+    margin: 0 10px 0 62px;
     max-width: 196px;
   }
   .profile__name-title {
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+    max-width: 282px;
+    margin-top: 14px;
   }
   .profile__edit-button {
     width: 18px;

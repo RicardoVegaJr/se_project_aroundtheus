@@ -69,6 +69,7 @@
   width: 21px;
   border: none;
   margin: 31px 30px 30px 28px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1050px) {
