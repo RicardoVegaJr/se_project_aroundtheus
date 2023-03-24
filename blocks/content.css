@@ -72,6 +72,10 @@
   cursor: pointer;
 }
 
+.content__card-heart:hover {
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 1050px) {
   .content__cards {
     -ms-grid-columns: 1fr 17px 1fr;
