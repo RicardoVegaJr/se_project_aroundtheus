@@ -6,7 +6,7 @@
   left: 0;
   bottom: 0;
   z-index: 999;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -104,4 +104,5 @@
     height: 26px;
     right: 0;
     top: -26;
+  }
 }
