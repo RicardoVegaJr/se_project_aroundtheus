@@ -29,8 +29,17 @@ const editProfile = document.querySelector("#profile__edit-button-action");
 const profileEditModal = document.querySelector("#profileModal");
 const profileEditModalClose = document.querySelector("#modalClose");
 
+const profileFormElement = document.querySelector("#modalform");
+let nameInput = profileFormElement.querySelector("#name");
+let jobInput = profileFormElement.querySelector("#title");
+let profileName = document.querySelector("#profilename");
+let profileJob = document.querySelector("#profilejob");
+const modalSubmit = document.querySelector("#modalsubmit");
+
 function openModal() {
   profileEditModal.classList.add("modal_opened");
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
 function closeModal() {
@@ -39,3 +48,11 @@ function closeModal() {
 
 editProfile.addEventListener("click", openModal);
 profileEditModalClose.addEventListener("click", closeModal);
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+}
+
+modalSubmit.addEventListener("submit", handleProfileFormSubmit);

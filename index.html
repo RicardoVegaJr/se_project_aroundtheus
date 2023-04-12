@@ -28,13 +28,13 @@
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name" id="profilename">Jacques Cousteau</h1>
             <button
               type="button"
               class="profile__edit-button"
               id="profile__edit-button-action"
             ></button>
-            <p class="profile__name-title">Explorer</p>
+            <p class="profile__name-title" id="profilejob">Explorer</p>
           </div>
           <button type="button" class="profile__add-button"></button>
         </div>
@@ -116,7 +116,7 @@
     <div class="modal" id="profileModal">
       <div class="modal__container">
         <p class="modal__title">Edit profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="modalform">
           <button class="modal__close" id="modalClose"></button>
           <input
             class="modal__edit"
@@ -134,7 +134,7 @@
             placeholder="Title"
             required
           />
-          <button class="modal__button">Save</button>
+          <button class="modal__button" id="modalsubmit">Save</button>
         </form>
       </div>
     </div>
