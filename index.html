@@ -40,74 +40,7 @@
         </div>
       </section>
       <section class="content">
-        <div class="content__cards">
-          <div class="content__card">
-            <img
-              src="./images/yosemite.jpg"
-              alt="yosemite"
-              class="content__card-image"
-            />
-            <div class="content__card-wrapper">
-              <h2 class="content__card-title">Yosemite Valley</h2>
-              <button type="button" class="content__card-heart"></button>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              src="./images/lake-louise.jpg"
-              alt="yosemite"
-              class="content__card-image"
-            />
-            <div class="content__card-wrapper">
-              <h2 class="content__card-title">Lake Louise</h2>
-              <button type="button" class="content__card-heart"></button>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              src="./images/bald-mountains.jpg"
-              alt="yosemite"
-              class="content__card-image"
-            />
-            <div class="content__card-wrapper">
-              <h2 class="content__card-title">Bald Mountains</h2>
-              <button type="button" class="content__card-heart"></button>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              src="./images/latemar.jpg"
-              alt="yosemite"
-              class="content__card-image"
-            />
-            <div class="content__card-wrapper">
-              <h2 class="content__card-title">Latemar</h2>
-              <button type="button" class="content__card-heart"></button>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              src="./images/vanoise.jpg"
-              alt="yosemite"
-              class="content__card-image"
-            />
-            <div class="content__card-wrapper">
-              <h2 class="content__card-title">Vanoise National Park</h2>
-              <button type="button" class="content__card-heart"></button>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              src="./images/lago.jpg"
-              alt="yosemite"
-              class="content__card-image"
-            />
-            <div class="content__card-wrapper">
-              <h2 class="content__card-title">Lago di Braies</h2>
-              <button type="button" class="content__card-heart"></button>
-            </div>
-          </div>
-        </div>
+        <div class="content__cards"></div>
       </section>
     </main>
     <footer class="footer page__section">
@@ -138,6 +71,15 @@
         </form>
       </div>
     </div>
+    <template id="card-template">
+      <div class="content__card">
+        <img src="" alt="" class="content__card-image" />
+        <div class="content__card-wrapper">
+          <h2 class="content__card-title"></h2>
+          <button type="button" class="content__card-heart"></button>
+        </div>
+      </div>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
