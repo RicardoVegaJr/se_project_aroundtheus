@@ -51,6 +51,7 @@
   border-bottom: 1px solid black;
   margin: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .modal__edit:last-of-type {
@@ -109,11 +110,10 @@
   }
 
   .modal__form {
-    max-width: 238px;
+    width: 238px;
   }
 
   .modal__button {
-    max-width: 238px;
     max-height: 46px;
     margin-top: 45px;
   }
