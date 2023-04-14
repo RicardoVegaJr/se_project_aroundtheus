@@ -41,6 +41,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  max-width: 430px;
 }
 
 .modal__edit {
@@ -49,6 +50,7 @@
   background: transparent;
   border-bottom: 1px solid black;
   margin: 0;
+  width: 100%;
 }
 
 .modal__edit:last-of-type {
@@ -117,6 +119,5 @@
     width: 26px;
     height: 26px;
     right: 0;
-    top: -26px;
   }
 }
