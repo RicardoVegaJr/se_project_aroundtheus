@@ -27,7 +27,7 @@ const initialCards = [
 
 const editProfile = document.querySelector("#profile__edit-button-action");
 const profileEditModal = document.querySelector("#profileModal");
-const profileEditModalClose = document.querySelector("#modalClose");
+const profileEditModalClose = document.querySelector("#modalProfileClose");
 
 const profileFormElement = document.querySelector("#modalform");
 let nameInput = profileFormElement.querySelector("#name");
