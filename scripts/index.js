@@ -25,17 +25,19 @@ const initialCards = [
   },
 ];
 
-const editProfile = document.querySelector("#profile__edit-button-action");
+const editProfileButton = document.querySelector(
+  "#profile__edit-button-action"
+);
 const profileEditModal = document.querySelector("#profileModal");
 const profileEditModalClose = document.querySelector("#modalProfileClose");
 
 const profileFormElement = document.querySelector("#modalform");
-let nameInput = profileFormElement.querySelector("#name");
-let jobInput = profileFormElement.querySelector("#title");
-let profileName = document.querySelector("#profilename");
-let profileJob = document.querySelector("#profilejob");
+const nameInput = profileFormElement.querySelector("#name");
+const jobInput = profileFormElement.querySelector("#title");
+const profileName = document.querySelector("#profilename");
+const profileJob = document.querySelector("#profilejob");
 const modalSubmit = document.querySelector("#modalsubmit");
-const cardListEl = document.querySelector(".content__cards");
+const cardListEl = document.querySelector(".cards");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -51,14 +53,15 @@ function closeModal() {
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = (cardElement.querySelector(".content__card-image").src =
-    cardData.link);
-  const cardTitleEl = cardElement.querySelector(".content__card-title");
+  const cardImageEl = cardElement.querySelector(".card-image");
+  cardImageEl.src = cardData.link;
+  cardImageEl.alt = `Photo of ${cardData.name}`;
+  const cardTitleEl = cardElement.querySelector(".card-title");
   cardTitleEl.textContent = cardData.name;
   return cardElement;
 }
 
-editProfile.addEventListener("click", openModal);
+editProfileButton.addEventListener("click", openModal);
 profileEditModalClose.addEventListener("click", closeModal);
 
 function handleProfileFormSubmit(evt) {

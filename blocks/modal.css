@@ -67,6 +67,9 @@
   top: -45px;
   right: -45px;
   cursor: pointer;
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal__close:hover {
@@ -88,6 +91,9 @@
   text-align: center;
   color: #ffffff;
   border: none;
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal__button:hover {
