@@ -36,7 +36,11 @@
             ></button>
             <p class="profile__name-title" id="profilejob">Explorer</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button
+            type="button"
+            class="profile__add-button"
+            id="content__add-button-action"
+          ></button>
         </div>
       </section>
       <section class="content">
@@ -46,6 +50,7 @@
     <footer class="footer page__section">
       <p class="footer__text">© 2022 Around The U.S.</p>
     </footer>
+    <!--Profile Edit Modal -->
     <div class="modal" id="profileModal">
       <div class="modal__container">
         <h2 class="modal__title">Edit profile</h2>
@@ -77,6 +82,40 @@
         </form>
       </div>
     </div>
+    <!--Profile Edit Modal -->
+    <!--Add Content Modal -->
+    <div class="modal" id="contentModal">
+      <div class="modal__container">
+        <h2 class="modal__title">New Place</h2>
+        <button
+          class="modal__close"
+          id="modalContentClose"
+          type="button"
+        ></button>
+        <form class="modal__form" id="modalform-title">
+          <input
+            class="modal__edit"
+            id="name"
+            name="title"
+            type="text"
+            placeholder="Title"
+            required
+          />
+          <input
+            class="modal__edit"
+            id="url"
+            name="url"
+            type="text"
+            placeholder="Image URL"
+            required
+          />
+          <button class="modal__button" id="modalContentsubmit" type="submit">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--Add Content Modal -->
     <template id="card-template">
       <div class="card">
         <img src="" alt="" class="card-image" />
