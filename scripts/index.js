@@ -64,7 +64,7 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card-image");
   const likeButton = cardElement.querySelector(".card-heart");
-  //Find trash can icon (select it)
+  const cardDeleteButton = document.querySelector("card__delete-button");
 
   // add the event listener to the delete button
   //cardElement.remove(); when button is clicked.
