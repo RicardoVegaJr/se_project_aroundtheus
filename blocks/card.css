@@ -63,6 +63,10 @@
   opacity: 0.5;
 }
 
+.card-heart_active {
+  background-image: url(../images/active\ heart.svg);
+}
+
 @media screen and (max-width: 1050px) {
   .cards {
     -ms-grid-columns: 1fr 17px 1fr;

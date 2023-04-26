@@ -63,6 +63,19 @@ function renderCard(cardData, wrapper) {
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card-image");
+  const likeButton = cardElement.querySelector(".card-heart");
+  //Find trash can icon (select it)
+
+  // add the event listener to the delete button
+  //cardElement.remove(); when button is clicked.
+
+  //add click listener to cardimage element
+  //open modal with preview image modal.
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card-heart_active");
+  });
+
   cardImageEl.src = cardData.link;
   cardImageEl.alt = `Photo of ${cardData.name}`;
   const cardTitleEl = cardElement.querySelector(".card-title");
@@ -108,3 +121,10 @@ contentFormElement.addEventListener("submit", handleContentFormSubmit);
 //});
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+// const likeButtons = document.querySelectorAll(".card-heart");
+// likeButtons.forEach((likeButton) => {
+//   likeButton.addEventListener("click", () => {
+//     likeButton.classList.toggle("card-heart_active");
+//   });
+// });
