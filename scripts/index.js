@@ -64,13 +64,18 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card-image");
   const likeButton = cardElement.querySelector(".card-heart");
-  const cardDeleteButton = document.querySelector("card__delete-button");
-
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   // add the event listener to the delete button
   //cardElement.remove(); when button is clicked.
+  cardDeleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   //add click listener to cardimage element
   //open modal with preview image modal.
+  cardImageEl.addEventListener("click", () => {
+    console.log("click");
+  });
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card-heart_active");
