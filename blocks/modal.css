@@ -12,10 +12,19 @@
   background-color: rgba(0, 0, 0, 0.5);
   padding-right: 19px;
   padding-left: 19px;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+  display: flex;
 }
 
 .modal_opened {
-  display: flex;
+  /* display: flex; */
+  visibility: visible;
+  pointer-events: all;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .modal__container {
