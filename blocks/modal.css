@@ -108,7 +108,7 @@
   opacity: 0.6;
 }
 
-.modal__content_type_preview {
+.modal__container_content_type_preview {
   display: flex;
   background-color: transparent;
   max-height: 80vh;

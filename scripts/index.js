@@ -44,8 +44,8 @@ const modalSubmit = document.querySelector("#modalsubmit");
 const cardListEl = document.querySelector(".cards");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-const cardTitleInput = contentFormElement.querySelector(".modal__input_title");
-const cardUrlInput = contentFormElement.querySelector(".modal__input_url");
+const cardTitleInput = contentFormElement.querySelector(".modal__edit_title");
+const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 const previewImageModalWindow = document.querySelector(".js-preview-popup");
 const previewImageElement = document.querySelector(".modal__preview-image");
 const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
