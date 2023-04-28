@@ -72,8 +72,6 @@ function getCardElement(cardData) {
     cardElement.remove();
   });
 
-  //add click listener to cardimage element
-  //open modal with preview image modal.
   cardImageEl.addEventListener("click", () => {
     previewImageElement.src = cardData.link;
     openModal(previewImageModalWindow);
@@ -125,16 +123,4 @@ function handleContentFormSubmit(evt) {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 contentFormElement.addEventListener("submit", handleContentFormSubmit);
 
-//initialCards.forEach((cardData) => {
-//const cardElement = getCardElement(cardData);
-// cardListEl.prepend(cardElement);
-//});
-
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-
-// const likeButtons = document.querySelectorAll(".card-heart");
-// likeButtons.forEach((likeButton) => {
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card-heart_active");
-//   });
-// });

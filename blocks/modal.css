@@ -20,7 +20,6 @@
 }
 
 .modal_opened {
-  /* display: flex; */
   visibility: visible;
   pointer-events: all;
   opacity: 1;
@@ -112,6 +111,7 @@
 }
 
 .modal__content_type_preview {
+  display: flex;
   background-color: transparent;
   max-height: 75vh;
   max-width: 75vw;
@@ -122,8 +122,7 @@
 .modal__preview-image {
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
-  display: flex;
+  object-fit: fit;
 }
 
 @media screen and (max-width: 580px) {
