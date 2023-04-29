@@ -5,7 +5,7 @@ const initialCards = [
   },
   {
     name: "Lake Louise",
-    link: "https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
   },
   {
     name: "Bald Mountains",
@@ -49,6 +49,7 @@ const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 const previewImageModalWindow = document.querySelector(".js-preview-popup");
 const previewImageElement = document.querySelector(".modal__preview-image");
 const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
+const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -74,6 +75,7 @@ function getCardElement(cardData) {
 
   cardImageEl.addEventListener("click", () => {
     previewImageElement.src = cardData.link;
+    modalPreviewTitle.textContent = cardData.name;
     openModal(previewImageModalWindow);
   });
   modalPreviewCloseButton.addEventListener("click", () => {
