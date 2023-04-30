@@ -51,6 +51,10 @@ const previewImageElement = document.querySelector(".modal__preview-image");
 const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
+modalPreviewCloseButton.addEventListener("click", () => {
+  closeModal(previewImageModalWindow);
+});
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
 }
@@ -78,9 +82,6 @@ function getCardElement(cardData) {
     previewImageElement.alt = `Photo of ${cardData.name}`;
     modalPreviewTitle.textContent = cardData.name;
     openModal(previewImageModalWindow);
-  });
-  modalPreviewCloseButton.addEventListener("click", () => {
-    closeModal(previewImageModalWindow);
   });
 
   likeButton.addEventListener("click", () => {
