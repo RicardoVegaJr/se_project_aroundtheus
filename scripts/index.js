@@ -75,6 +75,7 @@ function getCardElement(cardData) {
 
   cardImageEl.addEventListener("click", () => {
     previewImageElement.src = cardData.link;
+    previewImageElement.alt = `Photo of ${cardData.name}`;
     modalPreviewTitle.textContent = cardData.name;
     openModal(previewImageModalWindow);
   });
@@ -114,15 +115,16 @@ function handleProfileFormSubmit(evt) {
   closeModal(profileEditModal);
 }
 
-function handleContentFormSubmit(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
+  contentFormElement.reset();
   closeModal(contentModal);
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-contentFormElement.addEventListener("submit", handleContentFormSubmit);
+contentFormElement.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
