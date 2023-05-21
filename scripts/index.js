@@ -113,7 +113,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closeModal(profileEditModal);
+  closeModal(modal);
 }
 
 function handleCardFormSubmit(evt) {
