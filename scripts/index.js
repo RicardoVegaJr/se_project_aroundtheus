@@ -114,21 +114,18 @@ contentAddButton.addEventListener("click", () => openModal(contentModal));
 contentAddModalClose.addEventListener("click", () => closeModal(contentModal));
 
 //Esc Button Modal Close
+
 function handleEscButton(event) {
   const key = event.key;
   if (key === "Escape") {
-    closeModal(contentModal);
-    closeModal(profileEditModal);
-    closeModal(previewImageModalWindow);
+    const openedPopup = document.querySelector(".modal_opened");
+    closeModal(openedPopup);
   }
 }
-
 //Overlay Modal Close
 function handleOverlayClose(evt) {
   if (evt.target.classList.contains("modal_opened")) {
-    closeModal(contentModal);
-    closeModal(profileEditModal);
-    closeModal(previewImageModalWindow);
+    closeModal(evt.target);
   }
 }
 
