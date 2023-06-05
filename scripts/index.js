@@ -142,6 +142,8 @@ function handleCardFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   contentFormElement.reset();
+  const submitButton = document.querySelector("#modalContentSubmit");
+  submitButton.classList.toggle("modal__button_disabled");
   closeModal(contentModal);
 }
 
