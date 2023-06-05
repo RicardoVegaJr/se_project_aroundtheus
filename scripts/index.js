@@ -144,6 +144,7 @@ function handleCardFormSubmit(evt) {
   contentFormElement.reset();
   const submitButton = document.querySelector("#modalContentSubmit");
   submitButton.classList.toggle("modal__button_disabled");
+  submitButton.setAttribute("disabled", "true");
   closeModal(contentModal);
 }
 
