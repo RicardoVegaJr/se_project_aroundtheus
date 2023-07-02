@@ -1,4 +1,4 @@
-import Card from "./Card.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -85,7 +85,7 @@ function renderCard(cardData, wrapper) {
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card-image");
-  const likeButton = cardElement.querySelector(".card-heart");
+  // const likeButton = cardElement.querySelector(".card-heart");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   cardDeleteButton.addEventListener("click", () => {
     cardElement.remove();
@@ -98,9 +98,9 @@ function getCardElement(cardData) {
     openModal(previewImageModalWindow);
   });
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card-heart_active");
-  });
+  // likeButton.addEventListener("click", () => {
+  //   likeButton.classList.toggle("card-heart_active");
+  // });
 
   cardImageEl.src = cardData.link;
   cardImageEl.alt = `Photo of ${cardData.name}`;
