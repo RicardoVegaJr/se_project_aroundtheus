@@ -1,6 +1,33 @@
 import Card from "../components/Card.js";
 
-const initialCards = [
+// const initialCards = [
+//   {
+//     name: "Yosemite Valley",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+//   },
+//   {
+//     name: "Lake Louise",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+//   },
+//   {
+//     name: "Bald Mountains",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+//   },
+//   {
+//     name: "Latemar",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+//   },
+//   {
+//     name: "Vanoise National Park",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+//   },
+//   {
+//     name: "Lago di Braies",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+//   },
+// ];
+
+const cardData = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -26,11 +53,6 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
-const cardData = {
-  name: "Lago di Braies",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-};
 
 const card = new Card(cardData, "#card-template");
 card.getView();
@@ -86,10 +108,10 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card-image");
   // const likeButton = cardElement.querySelector(".card-heart");
-  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+  // cardDeleteButton.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
 
   cardImageEl.addEventListener("click", () => {
     previewImageElement.src = cardData.link;
@@ -161,4 +183,4 @@ function handleCardFormSubmit(evt) {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 contentFormElement.addEventListener("submit", handleCardFormSubmit);
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+// initialCards.forEach((cardData) => renderCard(cardData, cardListEl));

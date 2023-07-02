@@ -38,5 +38,6 @@ export default class Card {
     // set event listener
     this._setEventListeners();
     // return the card
+    cardData.forEach((cardData) => renderCard(name, link));
   }
 }
