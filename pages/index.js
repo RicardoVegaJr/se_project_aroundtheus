@@ -83,6 +83,10 @@ const previewImageElement = document.querySelector(".modal__preview-image");
 const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
+cardData.forEach((card) => {
+  renderCard(card);
+});
+
 modalPreviewCloseButton.addEventListener("click", () => {
   closeModal(previewImageModalWindow);
 });
@@ -99,14 +103,14 @@ function closeModal(modal) {
   document.removeEventListener("click", handleOverlayClose);
 }
 
-function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+function renderCard(cardData) {
+  const cardElement = new Card(cardData);
+  cardListEl.prepend(cardElement);
 }
 
 function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card-image");
+  // const cardElement = cardTemplate.cloneNode(true);
+  // const cardImageEl = cardElement.querySelector(".card-image");
   // const likeButton = cardElement.querySelector(".card-heart");
   // const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   // cardDeleteButton.addEventListener("click", () => {
@@ -124,11 +128,11 @@ function getCardElement(cardData) {
   //   likeButton.classList.toggle("card-heart_active");
   // });
 
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = `Photo of ${cardData.name}`;
-  const cardTitleEl = cardElement.querySelector(".card-title");
-  cardTitleEl.textContent = cardData.name;
-  return cardElement;
+  // cardImageEl.src = cardData.link;
+  // cardImageEl.alt = `Photo of ${cardData.name}`;
+  // const cardTitleEl = cardElement.querySelector(".card-title");
+  // cardTitleEl.textContent = cardData.name;
+  // return cardElement;
 }
 
 //Profile Modal open and close event listeners

@@ -30,14 +30,19 @@ export default class Card {
       .classList.toggle("card-heart_active");
   }
   getView() {
+    // get the card view
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-    // get the card view
+    this._cardImageEl = this._cardElement.querySelector(".card-image");
+    this._cardTitleEl = this._cardElement.querySelector(".card-title");
+    this._cardImageEl.src = this._link;
+    this._cardImageEl.alt = `Photo of ${this._name}`;
+    this._cardTitleEl.textContent = this._name;
     // set event listener
     this._setEventListeners();
     // return the card
-    cardData.forEach((cardData) => renderCard(name, link));
+    return this._cardElement;
   }
 }
