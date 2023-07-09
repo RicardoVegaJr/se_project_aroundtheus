@@ -54,8 +54,8 @@ const cardData = [
   },
 ];
 
-const card = new Card(cardData, "#card-template");
-card.getView();
+// const card = new Card(cardData, "#card-template");
+// card.getView();
 
 const editProfileButton = document.querySelector(
   "#profile__edit-button-action"
@@ -104,8 +104,8 @@ function closeModal(modal) {
 }
 
 function renderCard(cardData) {
-  const cardElement = new Card(cardData);
-  cardListEl.prepend(cardElement);
+  const cardElement = new Card(cardData, "#card-template");
+  cardListEl.prepend(cardElement.getView());
 }
 
 function getCardElement(cardData) {
