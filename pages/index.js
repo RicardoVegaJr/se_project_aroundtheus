@@ -1,4 +1,10 @@
 import Card from "../components/Card.js";
+import {
+  previewImageModalWindow,
+  previewImageElement,
+  modalPreviewCloseButton,
+  modalPreviewTitle,
+} from "../utils/utils.js";
 
 // const initialCards = [
 //   {
@@ -78,10 +84,10 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardTitleInput = contentFormElement.querySelector(".modal__edit_title");
 const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
-const previewImageModalWindow = document.querySelector(".js-preview-popup");
-const previewImageElement = document.querySelector(".modal__preview-image");
-const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
-const modalPreviewTitle = document.querySelector(".modal__preview-title");
+// const previewImageModalWindow = document.querySelector(".js-preview-popup");
+// const previewImageElement = document.querySelector(".modal__preview-image");
+// const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
+// const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
 cardData.forEach((card) => {
   renderCard(card);
@@ -116,18 +122,15 @@ function getCardElement(cardData) {
   // cardDeleteButton.addEventListener("click", () => {
   //   cardElement.remove();
   // });
-
-  cardImageEl.addEventListener("click", () => {
-    previewImageElement.src = cardData.link;
-    previewImageElement.alt = `Photo of ${cardData.name}`;
-    modalPreviewTitle.textContent = cardData.name;
-    openModal(previewImageModalWindow);
-  });
-
+  // cardImageEl.addEventListener("click", () => {
+  //   previewImageElement.src = cardData.link;
+  //   previewImageElement.alt = `Photo of ${cardData.name}`;
+  //   modalPreviewTitle.textContent = cardData.name;
+  //   openModal(previewImageModalWindow);
+  // });
   // likeButton.addEventListener("click", () => {
   //   likeButton.classList.toggle("card-heart_active");
   // });
-
   // cardImageEl.src = cardData.link;
   // cardImageEl.alt = `Photo of ${cardData.name}`;
   // const cardTitleEl = cardElement.querySelector(".card-title");
