@@ -7,31 +7,22 @@ import {
 } from "../utils/utils.js";
 
 export default class Card {
-  constructor(
-    { name, link },
-    cardSelector,
-    previewImageModalWindow,
-    previewImageElement,
-    modalPreviewCloseButton,
-    modalPreviewTitle
-  ) {
+  constructor({ name, link }, cardSelector) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    this._previewImageModalWindow = previewImageModalWindow;
-    this._previewImageElement = previewImageElement;
-    this._modalPreviewCloseButton = modalPreviewCloseButton;
-    this._modalPreviewTitle = modalPreviewTitle;
   }
   _setEventListeners() {
-    // ".card-heart"
+    // ---- card like button -----------------------------------------------------------------
+
     this._cardElement
       .querySelector(".card-heart")
       .addEventListener("click", () => {
         this._handleLikeIcon();
       });
 
-    // // ".card__delete-button"
+    // ---- card delete button ---------------------------------------------------------------
+
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
@@ -40,14 +31,17 @@ export default class Card {
     this._cardElement
       .querySelector(".card-image")
       .addEventListener("click", () => {
-        this._previewImageElement.src = this.link;
-        this._previewImageElement.alt = `Photo of ${this.name}`;
-        this._modalPreviewTitle.textContent = this.name;
+        // this._previewImageElement.src = this.link;
+        // this._previewImageElement.alt = `Photo of ${this.name}`;
+        // this._modalPreviewTitle.textContent = this.name;
         this._handleOpenModal();
       });
   }
   _handleOpenModal() {
-    this._openModal(previewImageModalWindow);
+    previewImageElement.src = this._link;
+    previewImageElement.alt = `Photo of ${this._name}`;
+    modalPreviewTitle.textContent = this._name;
+    openModal(previewImageModalWindow);
   }
 
   _handleDeleteCard() {
