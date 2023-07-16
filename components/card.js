@@ -1,3 +1,11 @@
+import { openModal, closeModal } from "../utils/utils.js";
+import {
+  previewImageModalWindow,
+  previewImageElement,
+  modalPreviewCloseButton,
+  modalPreviewTitle,
+} from "../utils/utils.js";
+
 export default class Card {
   constructor({ name, link }, cardSelector) {
     this._name = name;
@@ -18,6 +26,17 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
+    this._cardElement
+      .querySelector(".card-image")
+      .addEventListener("click", () => {
+        this.previewImageElement.src = this.cardData.link;
+        this.previewImageElement.alt = `Photo of ${this.cardData.name}`;
+        this.modalPreviewTitle.textContent = this.cardData.name;
+        this._handleOpenModal();
+      });
+  }
+  _handleOpenModal() {
+    this._openModal(previewImageModalWindow);
   }
 
   _handleDeleteCard() {
@@ -30,7 +49,8 @@ export default class Card {
       .classList.toggle("card-heart_active");
   }
   getView() {
-    // get the card view
+    // ---- get the card view ----------------------------------------------------------------
+
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
@@ -40,9 +60,11 @@ export default class Card {
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = `Photo of ${this._name}`;
     this._cardTitleEl.textContent = this._name;
-    // set event listener
+    // ---- set event listener ---------------------------------------------------------------
+
     this._setEventListeners();
-    // return the card
+    // ---- return the card ------------------------------------------------------------------
+
     return this._cardElement;
   }
 }

@@ -1,10 +1,5 @@
 import Card from "../components/Card.js";
-import {
-  previewImageModalWindow,
-  previewImageElement,
-  modalPreviewCloseButton,
-  modalPreviewTitle,
-} from "../utils/utils.js";
+import { openModal, closeModal } from "../utils/utils.js";
 
 // const initialCards = [
 //   {
@@ -93,21 +88,21 @@ cardData.forEach((card) => {
   renderCard(card);
 });
 
-modalPreviewCloseButton.addEventListener("click", () => {
-  closeModal(previewImageModalWindow);
-});
+// modalPreviewCloseButton.addEventListener("click", () => {
+//   closeModal(previewImageModalWindow);
+// });
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keyup", handleEscButton);
-  document.addEventListener("click", handleOverlayClose);
-}
+// function openModal(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keyup", handleEscButton);
+//   document.addEventListener("click", handleOverlayClose);
+// }
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", handleEscButton);
-  document.removeEventListener("click", handleOverlayClose);
-}
+// function closeModal(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keyup", handleEscButton);
+//   document.removeEventListener("click", handleOverlayClose);
+// }
 
 function renderCard(cardData) {
   const cardElement = new Card(cardData, "#card-template");
@@ -138,7 +133,8 @@ function getCardElement(cardData) {
   // return cardElement;
 }
 
-//Profile Modal open and close event listeners
+// ---- Profile Modal open and close event listeners -------------------------------------
+
 editProfileButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -148,25 +144,26 @@ profileEditModalClose.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
 
-//Content Modal open and close event listeners
+// ---- //Content Modal open and close event listeners -----------------------------------
+
 contentAddButton.addEventListener("click", () => openModal(contentModal));
 contentAddModalClose.addEventListener("click", () => closeModal(contentModal));
 
-//Esc Button Modal Close
+// ---- //Esc Button Modal Close ---------------------------------------------------------
 
-function handleEscButton(event) {
-  const key = event.key;
-  if (key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
-    closeModal(openedPopup);
-  }
-}
-//Overlay Modal Close
-function handleOverlayClose(evt) {
-  if (evt.target.classList.contains("modal_opened")) {
-    closeModal(evt.target);
-  }
-}
+// function handleEscButton(event) {
+//   const key = event.key;
+//   if (key === "Escape") {
+//     const openedPopup = document.querySelector(".modal_opened");
+//     closeModal(openedPopup);
+//   }
+// }
+// //Overlay Modal Close
+// function handleOverlayClose(evt) {
+//   if (evt.target.classList.contains("modal_opened")) {
+//     closeModal(evt.target);
+//   }
+// }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
