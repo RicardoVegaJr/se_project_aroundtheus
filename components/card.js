@@ -7,10 +7,21 @@ import {
 } from "../utils/utils.js";
 
 export default class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor(
+    { name, link },
+    cardSelector,
+    previewImageModalWindow,
+    previewImageElement,
+    modalPreviewCloseButton,
+    modalPreviewTitle
+  ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._previewImageModalWindow = previewImageModalWindow;
+    this._previewImageElement = previewImageElement;
+    this._modalPreviewCloseButton = modalPreviewCloseButton;
+    this._modalPreviewTitle = modalPreviewTitle;
   }
   _setEventListeners() {
     // ".card-heart"
@@ -29,9 +40,9 @@ export default class Card {
     this._cardElement
       .querySelector(".card-image")
       .addEventListener("click", () => {
-        this.previewImageElement.src = this.cardData.link;
-        this.previewImageElement.alt = `Photo of ${this.cardData.name}`;
-        this.modalPreviewTitle.textContent = this.cardData.name;
+        this._previewImageElement.src = this.link;
+        this._previewImageElement.alt = `Photo of ${this.name}`;
+        this._modalPreviewTitle.textContent = this.name;
         this._handleOpenModal();
       });
   }
