@@ -185,7 +185,28 @@ function handleCardFormSubmit(evt) {
   closeModal(contentModal);
 }
 
+const config = {
+  //   formSelector: ".popup__form",
+  //   inputSelector: ".popup__input",
+  //   submitButtonSelector: ".popup__button",
+  //   inactiveButtonClass: "popup__button_disabled",
+  //   inputErrorClass: "popup__input_type_error",
+  //   errorClass: "popup__error_visible",
+  formSelector: ".modal__form",
+  inputSelector: ".modal__edit",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: ".modal__error",
+  errorClass: ".modal__error_visible",
+};
+
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 contentFormElement.addEventListener("submit", handleCardFormSubmit);
 
 // initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+const profileFormValidator = new FormValidator(config, profileEditModal);
+profileFormValidator.enableValidation();
+
+const cardFormValidator = new FormValidator(config, contentFormElement);
+cardFormValidator.enableValidation();
