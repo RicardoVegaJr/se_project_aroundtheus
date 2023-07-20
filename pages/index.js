@@ -179,9 +179,9 @@ function handleCardFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   contentFormElement.reset();
-  const submitButton = document.querySelector("#modalContentSubmit");
-  submitButton.classList.toggle("modal__button_disabled");
-  submitButton.setAttribute("disabled", "true");
+  // const submitButton = document.querySelector("#modalContentSubmit");
+  // submitButton.classList.toggle("modal__button_disabled");
+  // submitButton.setAttribute("disabled", "true");
   closeModal(contentModal);
 }
 
