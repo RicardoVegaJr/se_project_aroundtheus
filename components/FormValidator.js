@@ -81,6 +81,8 @@ class FormValidator {
   enableValidation() {
     this._formEl.addEventListener("submit", (e) => {
       e.preventDefault();
+      this._submitButton.classList.toggle("modal__button_disabled");
+      this._submitButton.setAttribute("disabled", "true");
     });
     this._setEventListeners(this._formEl);
   }
