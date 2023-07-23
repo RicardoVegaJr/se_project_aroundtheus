@@ -38,12 +38,15 @@ class FormValidator {
     // let foundInvalid = false;
 
     if (this._foundInvalid()) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.disabled = true;
+      this._disableButton();
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
     }
+  }
+  _disableButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
   }
 
   _checkInputValidity(inputEl) {
@@ -81,8 +84,7 @@ class FormValidator {
   enableValidation() {
     this._formEl.addEventListener("submit", (e) => {
       e.preventDefault();
-      this._submitButton.classList.toggle("modal__button_disabled");
-      this._submitButton.setAttribute("disabled", "true");
+      this._disableButton();
     });
     this._setEventListeners(this._formEl);
   }
