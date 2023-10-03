@@ -1,6 +1,13 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { openModal, closeModal } from "../utils/utils.js";
+// import { openModal, closeModal } from "../utils/utils.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+
+const newCardPopup = new PopupWithForm({
+  popupSelector: "#contentModal",
+  handleFormSubmi: () => {},
+});
+newCardPopup.openModal(); //using openModal here to test close functionality.
 
 // const initialCards = [
 //   {

@@ -19,7 +19,7 @@ modalPreviewCloseButton.addEventListener("click", () => {
   closeModal(previewImageModalWindow);
 });
 
-//Esc Button Modal Close
+// Esc Button Modal Close
 function handleEscButton(event) {
   const key = event.key;
   if (key === "Escape") {

@@ -1,12 +1,12 @@
 import Popup from "./Popup.js";
 
-class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
     this._popupForm = this._popupElement.querySelector("#modalcontentform");
     this._handleFormSubmit = handleFormSubmit;
   }
-  close() {
+  closeModal() {
     this._popupForm.reset();
     super.close();
   }
@@ -14,5 +14,5 @@ class PopupWithForm extends Popup {
 
 //index.js
 
-const newCardPopup = new PopupWithForm("#contentModal", () => {});
-newCardPopup.oopen();
+// const newCardPopup = new PopupWithForm("#contentModal", () => {});
+//newCardPopup.open();
