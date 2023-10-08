@@ -7,7 +7,17 @@ const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
   handleFormSubmi: () => {},
 });
-newCardPopup.openModal(); //using openModal here to test close functionality.
+
+const profileCardPopup = new PopupWithForm({
+  popupSelector: "#profileModal",
+  handleFormSubmi: () => {},
+});
+
+// profileCardPopup.openModal();
+
+// setTimeout(() => {
+//   profileCardPopup.closeModal();
+// }, 3000);
 
 // const initialCards = [
 //   {
@@ -146,16 +156,16 @@ function getCardElement(cardData) {
 editProfileButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  openModal(profileEditModal);
+  profileCardPopup.openModal();
 });
 profileEditModalClose.addEventListener("click", () =>
-  closeModal(profileEditModal)
+  profileCardPopup.closeModal()
 );
 
 // ---- //Content Modal open and close event listeners -----------------------------------
 
-contentAddButton.addEventListener("click", () => openModal(contentModal));
-contentAddModalClose.addEventListener("click", () => closeModal(contentModal));
+contentAddButton.addEventListener("click", () => newCardPopup.openModal());
+contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
 
 // ---- //Esc Button Modal Close ---------------------------------------------------------
 
