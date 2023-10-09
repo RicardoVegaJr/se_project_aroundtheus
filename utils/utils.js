@@ -4,9 +4,9 @@ const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
 function openModal(modal) {
-  // modal.classList.add("modal_opened");
-  // document.addEventListener("keyup", handleEscButton);
-  // document.addEventListener("click", handleOverlayClose);
+  modal.classList.add("modal_opened");
+  document.addEventListener("keyup", handleEscButton);
+  document.addEventListener("click", handleOverlayClose);
 }
 
 function closeModal(modal) {

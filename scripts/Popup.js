@@ -14,24 +14,25 @@ export default class Popup {
     document.removeEventListener("keyup", this._handleEscButton);
     document.removeEventListener("click", this._handleOverlayClose);
   }
-  _handleEscButton(event) {
+  _handleEscButton = (event) => {
     //esc
     const key = event.key;
     if (key === "Escape") {
-      // const openedPopup = document.querySelector(".modal_opened");
       console.log("esc pressed");
-      // this.closeModal();
-    }
-  }
-  _handleOverlayClose(evt) {
-    if (evt.target.classList.contains("modal_opened")) {
       this.closeModal();
     }
-  }
+  };
+  _handleOverlayClose = (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      // console.log(this);
+      this.closeModal();
+    }
+  };
 
   setEventListeners() {
     //set event listeners
     document.addEventListener("keyup", this._handleEscButton);
     document.addEventListener("click", this._handleOverlayClose);
+    console.log(this);
   }
 }
