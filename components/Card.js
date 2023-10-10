@@ -5,6 +5,7 @@ import {
   modalPreviewCloseButton,
   modalPreviewTitle,
 } from "../utils/utils.js";
+// import PopupWithImage from "../scripts/PopupWithImage.js";
 
 export default class Card {
   constructor({ name, link }, cardSelector) {
@@ -31,9 +32,9 @@ export default class Card {
     this._cardElement
       .querySelector(".card-image")
       .addEventListener("click", () => {
-        // this._previewImageElement.src = this.link;
-        // this._previewImageElement.alt = `Photo of ${this.name}`;
-        // this._modalPreviewTitle.textContent = this.name;
+        this._previewImageElement.src = this.link;
+        this._previewImageElement.alt = `Photo of ${this.name}`;
+        this._modalPreviewTitle.textContent = this.name;
         this._handleOpenModal();
       });
   }

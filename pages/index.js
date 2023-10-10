@@ -2,18 +2,24 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 // import { openModal, closeModal } from "../utils/utils.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
+// import PopupWithImage from "../scripts/PopupWithImage.js";
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
-  handleFormSubmi: () => {},
+  handleCardFormSubmit: () => {},
 });
 
 const profileCardPopup = new PopupWithForm({
   popupSelector: "#profileModal",
-  handleFormSubmi: () => {},
+  handleProfileFormSubmit: () => {},
 });
 
-// profileCardPopup.openModal();
+// const contentCardPreview = new PopupWithImage({
+//   popupSelector: ".js-preview-popup",
+//   cardData,
+// });
+
+// contentCardPreview.profileCardPopup.openModal();
 
 // setTimeout(() => {
 //   profileCardPopup.closeModal();
@@ -187,7 +193,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closeModal(profileEditModal);
+  profileCardPopup.closeModal(profileEditModal);
 }
 
 function handleCardFormSubmit(evt) {
@@ -199,7 +205,7 @@ function handleCardFormSubmit(evt) {
   // const submitButton = document.querySelector("#modalContentSubmit");
   // submitButton.classList.toggle("modal__button_disabled");
   // submitButton.setAttribute("disabled", "true");
-  closeModal(contentModal);
+  newCardPopup.closeModal(contentModal);
 }
 
 const config = {
