@@ -18,8 +18,6 @@ const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
 });
 
-// contentCardPreview.profileCardPopup.openModal({ cardData });
-
 // setTimeout(() => {
 //   profileCardPopup.closeModal();
 // }, 3000);
@@ -128,8 +126,13 @@ cardData.forEach((card) => {
 // }
 
 function renderCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template");
+  const cardElement = new Card(cardData, "#card-template", handleImageClick);
   cardListEl.prepend(cardElement.getView());
+}
+
+function handleImageClick(cardData) {
+  console.log(cardData);
+  contentCardPreview.openModal(cardData);
 }
 
 function getCardElement(cardData) {

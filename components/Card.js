@@ -8,10 +8,11 @@ import {
 // import PopupWithImage from "../scripts/PopupWithImage.js";
 
 export default class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link }, cardSelector, handleImageClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
   }
   _setEventListeners() {
     // ---- card like button -----------------------------------------------------------------
@@ -32,17 +33,11 @@ export default class Card {
     this._cardElement
       .querySelector(".card-image")
       .addEventListener("click", () => {
-        this._previewImageElement.src = this.link;
-        this._previewImageElement.alt = `Photo of ${this.name}`;
-        this._modalPreviewTitle.textContent = this.name;
-        this._handleOpenModal();
+        // this._previewImageElement.src = this.link;
+        // this._previewImageElement.alt = `Photo of ${this.name}`;
+        // this._modalPreviewTitle.textContent = this.name;
+        this._handleImageClick({ name: this._name, link: this._link });
       });
-  }
-  _handleOpenModal() {
-    previewImageElement.src = this._link;
-    previewImageElement.alt = `Photo of ${this._name}`;
-    modalPreviewTitle.textContent = this._name;
-    openModal(previewImageModalWindow);
   }
 
   _handleDeleteCard() {
