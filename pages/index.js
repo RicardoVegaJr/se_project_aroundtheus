@@ -2,7 +2,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 // import { openModal, closeModal } from "../utils/utils.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
-// import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
@@ -14,12 +14,11 @@ const profileCardPopup = new PopupWithForm({
   handleProfileFormSubmit: () => {},
 });
 
-// const contentCardPreview = new PopupWithImage({
-//   popupSelector: ".js-preview-popup",
-//   cardData,
-// });
+const contentCardPreview = new PopupWithImage({
+  popupSelector: ".js-preview-popup",
+});
 
-// contentCardPreview.profileCardPopup.openModal();
+// contentCardPreview.profileCardPopup.openModal({ cardData });
 
 // setTimeout(() => {
 //   profileCardPopup.closeModal();

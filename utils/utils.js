@@ -3,17 +3,17 @@ const previewImageElement = document.querySelector(".modal__preview-image");
 const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keyup", handleEscButton);
-  document.addEventListener("click", handleOverlayClose);
-}
+// function openModal(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keyup", handleEscButton);
+//   document.addEventListener("click", handleOverlayClose);
+// }
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", handleEscButton);
-  document.removeEventListener("click", handleOverlayClose);
-}
+// function closeModal(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keyup", handleEscButton);
+//   document.removeEventListener("click", handleOverlayClose);
+// }
 
 modalPreviewCloseButton.addEventListener("click", () => {
   closeModal(previewImageModalWindow);
@@ -42,4 +42,4 @@ export {
   modalPreviewTitle,
 };
 
-export { openModal, closeModal, handleEscButton, handleOverlayClose };
+// export { openModal, closeModal, handleEscButton, handleOverlayClose };
