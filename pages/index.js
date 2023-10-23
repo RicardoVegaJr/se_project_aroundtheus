@@ -3,6 +3,7 @@ import FormValidator from "../components/FormValidator.js";
 // import { openModal, closeModal } from "../utils/utils.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
+import Section from "../utils/section.js";
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
@@ -105,9 +106,12 @@ const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 // const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 // const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
-cardData.forEach((card) => {
-  renderCard(card);
-});
+const cardRendered = new Section();
+cardRendered.renderItems({ cardData });
+
+// cardData.forEach((card) => {
+//   renderCard(card);
+// });
 
 // modalPreviewCloseButton.addEventListener("click", () => {
 //   closeModal(previewImageModalWindow);
