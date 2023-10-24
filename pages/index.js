@@ -106,8 +106,8 @@ const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 // const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 // const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
-const cardRendered = new Section();
-cardRendered.renderItems({ cardData });
+const cardRendered = new Section({ items: cardData }, renderCard);
+cardRendered.renderItems();
 
 // cardData.forEach((card) => {
 //   renderCard(card);
