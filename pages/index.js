@@ -4,20 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import Section from "../utils/section.js";
-
-const newCardPopup = new PopupWithForm({
-  popupSelector: "#contentModal",
-  handleCardFormSubmit: () => {},
-});
-
-const profileCardPopup = new PopupWithForm({
-  popupSelector: "#profileModal",
-  handleProfileFormSubmit: () => {},
-});
-
-const contentCardPreview = new PopupWithImage({
-  popupSelector: ".js-preview-popup",
-});
+import UserInfo from "../utils/UserInfo.js";
 
 // setTimeout(() => {
 //   profileCardPopup.closeModal();
@@ -106,9 +93,6 @@ const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 // const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 // const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
-const cardRendered = new Section({ items: cardData }, renderCard);
-cardRendered.renderItems();
-
 // cardData.forEach((card) => {
 //   renderCard(card);
 // });
@@ -128,6 +112,26 @@ cardRendered.renderItems();
 //   document.removeEventListener("keyup", handleEscButton);
 //   document.removeEventListener("click", handleOverlayClose);
 // }
+
+const newCardPopup = new PopupWithForm({
+  popupSelector: "#contentModal",
+  handleCardFormSubmit: () => {},
+});
+
+const profileCardPopup = new PopupWithForm({
+  popupSelector: "#profileModal",
+  handleProfileFormSubmit: () => {},
+});
+
+const contentCardPreview = new PopupWithImage({
+  popupSelector: ".js-preview-popup",
+});
+
+const cardRendered = new Section({ items: cardData }, renderCard);
+cardRendered.renderItems();
+
+const newUserInfo = new UserInfo(nameInput, jobInput);
+newUserInfo.getUserInfo();
 
 function renderCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", handleImageClick);
@@ -166,8 +170,8 @@ function getCardElement(cardData) {
 // ---- Profile Modal open and close event listeners -------------------------------------
 
 editProfileButton.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  // nameInput.value = profileName.textContent;
+  // jobInput.value = profileJob.textContent;
   profileCardPopup.openModal();
 });
 profileEditModalClose.addEventListener("click", () =>
