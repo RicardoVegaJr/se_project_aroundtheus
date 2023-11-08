@@ -6,6 +6,8 @@ import PopupWithImage from "../scripts/PopupWithImage.js";
 import Section from "../utils/section.js";
 import UserInfo from "../utils/UserInfo.js";
 
+import "../pages/index.css";
+
 // setTimeout(() => {
 //   profileCardPopup.closeModal();
 // }, 3000);
@@ -90,7 +92,7 @@ const cardTitleInput = contentFormElement.querySelector(".modal__edit_title");
 const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 // const previewImageModalWindow = document.querySelector(".js-preview-popup");
 // const previewImageElement = document.querySelector(".modal__preview-image");
-// const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
+const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 // const modalPreviewTitle = document.querySelector(".modal__preview-title");
 
 // cardData.forEach((card) => {
@@ -180,6 +182,10 @@ editProfileButton.addEventListener("click", () => {
 });
 profileEditModalClose.addEventListener("click", () =>
   profileCardPopup.closeModal()
+);
+
+modalPreviewCloseButton.addEventListener("click", () =>
+  contentCardPreview.closeModal()
 );
 
 // ---- //Content Modal open and close event listeners -----------------------------------

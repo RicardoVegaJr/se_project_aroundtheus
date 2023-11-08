@@ -15,9 +15,9 @@ const modalPreviewTitle = document.querySelector(".modal__preview-title");
 //   document.removeEventListener("click", handleOverlayClose);
 // }
 
-modalPreviewCloseButton.addEventListener("click", () => {
-  closeModal(previewImageModalWindow);
-});
+// modalPreviewCloseButton.addEventListener("click", () => {
+//   closeModal(previewImageModalWindow);
+// });
 
 // Esc Button Modal Close
 function handleEscButton(event) {
