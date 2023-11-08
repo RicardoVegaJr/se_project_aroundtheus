@@ -1,24 +1,22 @@
 export default class UserInfo {
-  constructor(nameInput, jobInput) {
-    this.nameInput = nameInput;
-    this.jobInput = jobInput;
-    this.nameInput = document.querySelector("#name");
-    this.jobInput = document.querySelector("#title");
-    this.profileName = document.querySelector("#profilename");
-    this.profileJob = document.querySelector("#profilejob");
+  constructor(nameSelector, aboutSelector) {
+    this.nameEl = document.querySelector(nameSelector);
+    this.aboutEl = document.querySelector(aboutSelector);
   }
   getUserInfo() {
     //returns an object containing information about the user. This method will be handy for cases when it's necessary to display the user data in the open form.
     // return this.profileContent;
-    this.nameInput = this.profileName.textContent;
-    this.jobInput = this.profileJob.textContent;
     // console.log(this.jobInput);
-    // console.log(this.nameInput);
+    // this.nameEl = this.nameEl.textcontent;
+    // console.log(this.aboutSelector);
     // console.log(this.profileName);
     // console.log(this.profileJob);
+    return [this.nameEl.textContent, this.aboutEl.textContent];
   }
 
-  setUserInfo() {
+  setUserInfo(data) {
     //which takes new user data and adds it to the page. This method should be used after successful submission of the profile form.
+    this.nameEl.textContent = data.name;
+    this.aboutEl.textContent = data.about;
   }
 }

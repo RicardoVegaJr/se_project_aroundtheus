@@ -130,8 +130,12 @@ const contentCardPreview = new PopupWithImage({
 const cardRendered = new Section({ items: cardData }, renderCard);
 cardRendered.renderItems();
 
-const newUserInfo = new UserInfo(nameInput, jobInput);
+const newUserInfo = new UserInfo("#profilename", "#profilejob");
 newUserInfo.getUserInfo();
+newUserInfo.setUserInfo({
+  name: "Ricardo Vega Jr ",
+  about: "SE Student",
+});
 
 function renderCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", handleImageClick);
