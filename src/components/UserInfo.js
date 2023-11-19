@@ -4,14 +4,7 @@ export default class UserInfo {
     this.aboutEl = document.querySelector(aboutSelector);
   }
   getUserInfo() {
-    //returns an object containing information about the user. This method will be handy for cases when it's necessary to display the user data in the open form.
-    // return this.profileContent;
-    // console.log(this.jobInput);
-    // this.nameEl = this.nameEl.textcontent;
-    // console.log(this.aboutSelector);
-    // console.log(this.profileName);
-    // console.log(this.profileJob);
-    return [this.nameEl.textContent, this.aboutEl.textContent];
+    return { name, job };
   }
 
   setUserInfo(data) {

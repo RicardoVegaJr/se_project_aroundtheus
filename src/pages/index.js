@@ -1,10 +1,10 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 // import { openModal, closeModal } from "../utils/utils.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import Section from "../utils/section.js";
-import UserInfo from "../utils/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/section.js";
+import UserInfo from "../components/UserInfo.js";
 
 import "../pages/index.css";
 
@@ -69,9 +69,6 @@ const cardData = [
 // const card = new Card(cardData, "#card-template");
 // card.getView();
 
-const editProfileButton = document.querySelector(
-  "#profile__edit-button-action"
-);
 const profileEditModal = document.querySelector("#profileModal");
 const profileEditModalClose = document.querySelector("#modalProfileClose");
 const contentModal = document.querySelector("#contentModal");
@@ -129,11 +126,10 @@ const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
 });
 
-const cardRendered = new Section({ items: cardData }, renderCard);
-cardRendered.renderItems();
+const cardSection = new Section({ items: cardData }, renderCard);
+cardSection.renderItems();
 
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
-newUserInfo.getUserInfo();
 newUserInfo.setUserInfo({
   name: "Ricardo Vega Jr ",
   about: "SE Student",
@@ -149,37 +145,19 @@ function handleImageClick(cardData) {
   contentCardPreview.openModal(cardData);
 }
 
-function getCardElement(cardData) {
-  // const cardElement = cardTemplate.cloneNode(true);
-  // const cardImageEl = cardElement.querySelector(".card-image");
-  // const likeButton = cardElement.querySelector(".card-heart");
-  // const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  // cardDeleteButton.addEventListener("click", () => {
-  //   cardElement.remove();
-  // });
-  // cardImageEl.addEventListener("click", () => {
-  //   previewImageElement.src = cardData.link;
-  //   previewImageElement.alt = `Photo of ${cardData.name}`;
-  //   modalPreviewTitle.textContent = cardData.name;
-  //   openModal(previewImageModalWindow);
-  // });
-  // likeButton.addEventListener("click", () => {
-  //   likeButton.classList.toggle("card-heart_active");
-  // });
-  // cardImageEl.src = cardData.link;
-  // cardImageEl.alt = `Photo of ${cardData.name}`;
-  // const cardTitleEl = cardElement.querySelector(".card-title");
-  // cardTitleEl.textContent = cardData.name;
-  // return cardElement;
-}
-
 // ---- Profile Modal open and close event listeners -------------------------------------
 
-editProfileButton.addEventListener("click", () => {
+const editProfileButton = document.querySelector(
+  "#profile__edit-button-action"
+);
+
+editProfileButton.addEventListener("click", () =>
   // nameInput.value = profileName.textContent;
   // jobInput.value = profileJob.textContent;
-  profileCardPopup.openModal();
-});
+  // console.log("this is working")
+  profileCardPopup.openModal()
+);
+
 profileEditModalClose.addEventListener("click", () =>
   profileCardPopup.closeModal()
 );
@@ -225,7 +203,7 @@ function handleCardFormSubmit(evt) {
   // const submitButton = document.querySelector("#modalContentSubmit");
   // submitButton.classList.toggle("modal__button_disabled");
   // submitButton.setAttribute("disabled", "true");
-  newCardPopup.closeModal(contentModal);
+  newCardPopup.closeModal();
 }
 
 const config = {

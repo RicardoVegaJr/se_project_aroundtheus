@@ -1,10 +1,10 @@
 // import { openModal, closeModal } from "../utils/utils.js";
-import {
-  previewImageModalWindow,
-  previewImageElement,
-  modalPreviewCloseButton,
-  modalPreviewTitle,
-} from "../utils/utils.js";
+// import {
+//   previewImageModalWindow,
+//   previewImageElement,
+//   modalPreviewCloseButton,
+//   modalPreviewTitle,
+// } from "../utils/utils.js";
 // import PopupWithImage from "../scripts/PopupWithImage.js";
 
 export default class Card {
