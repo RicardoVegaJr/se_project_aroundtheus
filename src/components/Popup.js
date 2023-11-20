@@ -6,6 +6,8 @@ export default class Popup {
   }
   openModal() {
     this._popupElement.classList.add("modal_opened");
+    this._closeModalButton = this._popupElement.querySelector(".modal__close");
+    console.log(this._closeModalButton);
     this.setEventListeners();
   }
   closeModal() {
@@ -28,19 +30,17 @@ export default class Popup {
       this.closeModal();
     }
   };
-  _handleEscapeButtonClick() {
-    console.log("Hello working function");
-  }
+  _handleClickButtonClose = () => {
+    this.closeModal();
+  };
 
   setEventListeners() {
     //set event listeners
     document.addEventListener("keyup", this._handleEscButton);
     document.addEventListener("click", this._handleOverlayClose);
-    this._closeModalButton = document.querySelector(".modal__close");
-    console.log(this._closeModalButton);
     this._closeModalButton.addEventListener(
       "click",
-      this._handleEscapeButtonClick
+      this._handleClickButtonClose
     );
   }
 }
