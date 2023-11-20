@@ -28,11 +28,19 @@ export default class Popup {
       this.closeModal();
     }
   };
+  _handleEscapeButtonClick() {
+    console.log("Hello working function");
+  }
 
   setEventListeners() {
     //set event listeners
     document.addEventListener("keyup", this._handleEscButton);
     document.addEventListener("click", this._handleOverlayClose);
-    console.log(this);
+    this._closeModalButton = document.querySelector(".modal__close");
+    console.log(this._closeModalButton);
+    this._closeModalButton.addEventListener(
+      "click",
+      this._handleEscapeButtonClick
+    );
   }
 }

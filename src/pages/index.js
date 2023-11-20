@@ -158,18 +158,18 @@ editProfileButton.addEventListener("click", () =>
   profileCardPopup.openModal()
 );
 
-profileEditModalClose.addEventListener("click", () =>
-  profileCardPopup.closeModal()
-);
+// profileEditModalClose.addEventListener("click", () =>
+//   profileCardPopup.closeModal()
+// );
 
-modalPreviewCloseButton.addEventListener("click", () =>
-  contentCardPreview.closeModal()
-);
+// modalPreviewCloseButton.addEventListener("click", () =>
+//   contentCardPreview.closeModal()
+// );
 
 // ---- //Content Modal open and close event listeners -----------------------------------
 
 contentAddButton.addEventListener("click", () => newCardPopup.openModal());
-contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
+// contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
 
 // ---- //Esc Button Modal Close ---------------------------------------------------------
 
