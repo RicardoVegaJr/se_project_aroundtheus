@@ -114,12 +114,12 @@ const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
-  handleCardFormSubmit: () => {},
+  handleCardFormSubmit,
 });
 
 const profileCardPopup = new PopupWithForm({
   popupSelector: "#profileModal",
-  handleProfileFormSubmit: () => {},
+  handleProfileFormSubmit,
 });
 
 const contentCardPreview = new PopupWithImage({
@@ -130,10 +130,6 @@ const cardSection = new Section({ items: cardData }, renderCard);
 cardSection.renderItems();
 
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
-newUserInfo.setUserInfo({
-  name: "Ricardo Vega Jr ",
-  about: "SE Student",
-});
 
 function renderCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", handleImageClick);
@@ -189,8 +185,12 @@ contentAddButton.addEventListener("click", () => newCardPopup.openModal());
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
+  // profileName.textContent = nameInput.value;
+  // profileJob.textContent = jobInput.value;
+  newUserInfo.setUserInfo({
+    name: nameInput.value,
+    about: jobInput.value,
+  });
   profileCardPopup.closeModal(profileEditModal);
 }
 
@@ -199,7 +199,7 @@ function handleCardFormSubmit(evt) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
-  contentFormElement.reset();
+  // contentFormElement.reset();
   // const submitButton = document.querySelector("#modalContentSubmit");
   // submitButton.classList.toggle("modal__button_disabled");
   // submitButton.setAttribute("disabled", "true");
@@ -221,8 +221,8 @@ const config = {
   errorClass: ".modal__error_visible",
 };
 
-profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-contentFormElement.addEventListener("submit", handleCardFormSubmit);
+// profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+// contentFormElement.addEventListener("submit", handleCardFormSubmit);
 
 // initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
