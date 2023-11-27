@@ -114,12 +114,12 @@ const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
-  handleCardFormSubmit,
+  handleFormSubmit: handleCardFormSubmit,
 });
 
 const profileCardPopup = new PopupWithForm({
   popupSelector: "#profileModal",
-  handleProfileFormSubmit,
+  handleFormSubmit: handleProfileFormSubmit,
 });
 
 const contentCardPreview = new PopupWithImage({
@@ -127,13 +127,14 @@ const contentCardPreview = new PopupWithImage({
 });
 
 const cardSection = new Section({ items: cardData }, renderCard);
-cardSection.renderItems();
+cardSection.renderItems(cardData);
 
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
 function renderCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", handleImageClick);
-  cardListEl.prepend(cardElement.getView());
+  // cardListEl.prepend(cardElement.getView());
+  cardSection.addItem({ cardData });
 }
 
 function handleImageClick(cardData) {
@@ -183,8 +184,7 @@ contentAddButton.addEventListener("click", () => newCardPopup.openModal());
 //   }
 // }
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
+function handleProfileFormSubmit() {
   // profileName.textContent = nameInput.value;
   // profileJob.textContent = jobInput.value;
   newUserInfo.setUserInfo({
@@ -194,8 +194,7 @@ function handleProfileFormSubmit(evt) {
   profileCardPopup.closeModal(profileEditModal);
 }
 
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
+function handleCardFormSubmit() {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);

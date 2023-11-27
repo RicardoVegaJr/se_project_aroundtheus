@@ -14,12 +14,13 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
     super.closeModal();
   }
-  _handleFormSubmitButton() {
+  _handleFormSubmitButton = (evt) => {
     // profileFormElement.addEventListener("submit", handleProfileFormSubmit);
     // contentFormElement.addEventListener("submit", handleCardFormSubmit);
+    evt.preventDefault();
     console.log("step 2");
-    this._handleFormSubmit;
-  }
+    this._handleFormSubmit();
+  };
   _setEventListeners() {
     this._popupForm.addEventListener("submit", this._handleFormSubmitButton);
     console.log("step 1");
