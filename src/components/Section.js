@@ -2,7 +2,7 @@ export default class Section {
   constructor({ items }, renderer) {
     this._items = items;
     this._renderer = renderer;
-    this._container = document.querySelector(".content");
+    this._container = document.querySelector(".cards");
   }
   renderItems() {
     //renders all elements on the page. It should iterate through the items array and call the renderer()

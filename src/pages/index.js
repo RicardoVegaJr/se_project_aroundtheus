@@ -134,7 +134,7 @@ const newUserInfo = new UserInfo("#profilename", "#profilejob");
 function renderCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", handleImageClick);
   // cardListEl.prepend(cardElement.getView());
-  cardSection.addItem({ cardData });
+  cardSection.addItem(cardElement.getView());
 }
 
 function handleImageClick(cardData) {
