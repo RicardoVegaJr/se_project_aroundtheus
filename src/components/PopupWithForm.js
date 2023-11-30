@@ -13,21 +13,19 @@ export default class PopupWithForm extends Popup {
   closeModal() {
     this._popupForm.reset();
     super.closeModal();
+    this._popupForm.removeEventListener("submit", this._handleFormSubmitButton);
   }
   _handleFormSubmitButton = (evt) => {
-    // profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-    // contentFormElement.addEventListener("submit", handleCardFormSubmit);
     evt.preventDefault();
-    console.log("step 2");
     this._handleFormSubmit();
   };
   _setEventListeners() {
     this._popupForm.addEventListener("submit", this._handleFormSubmitButton);
-    console.log("step 1");
   }
+  // toggleButtonState() {
+  //   this._modalSubmitButton = this._popupForm.querySelector(
+  //     "#modalContentSubmit"
+  //   );
+  //   this._modalSubmitButton.classList.toggle(".modal__button");
+  // }
 }
-
-//index.js
-
-// const newCardPopup = new PopupWithForm("#contentModal", () => {});
-//newCardPopup.open();

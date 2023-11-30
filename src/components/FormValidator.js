@@ -34,7 +34,7 @@ class FormValidator {
   _foundInvalid() {
     return !this._inputEls.every((inputEl) => inputEl.validity.valid);
   }
-  _toggleButtonState() {
+  toggleButtonState() {
     // let foundInvalid = false;
 
     if (this._foundInvalid()) {
@@ -77,7 +77,7 @@ class FormValidator {
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }

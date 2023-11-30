@@ -126,7 +126,7 @@ const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
 });
 
-const cardSection = new Section({ items: cardData }, renderCard);
+const cardSection = new Section({ items: cardData }, renderCard, "#section");
 cardSection.renderItems(cardData);
 
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
@@ -151,7 +151,6 @@ const editProfileButton = document.querySelector(
 editProfileButton.addEventListener("click", () =>
   // nameInput.value = profileName.textContent;
   // jobInput.value = profileJob.textContent;
-  // console.log("this is working")
   profileCardPopup.openModal()
 );
 
