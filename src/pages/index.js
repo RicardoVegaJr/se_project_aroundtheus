@@ -148,11 +148,12 @@ const editProfileButton = document.querySelector(
   "#profile__edit-button-action"
 );
 
-editProfileButton.addEventListener("click", () =>
+editProfileButton.addEventListener("click", () => {
   // nameInput.value = profileName.textContent;
   // jobInput.value = profileJob.textContent;
-  profileCardPopup.openModal()
-);
+  cardFormValidator.toggleButtonState();
+  profileCardPopup.openModal();
+});
 
 // profileEditModalClose.addEventListener("click", () =>
 //   profileCardPopup.closeModal()
@@ -164,7 +165,10 @@ editProfileButton.addEventListener("click", () =>
 
 // ---- //Content Modal open and close event listeners -----------------------------------
 
-contentAddButton.addEventListener("click", () => newCardPopup.openModal());
+contentAddButton.addEventListener("click", () => {
+  cardFormValidator.toggleButtonState();
+  newCardPopup.openModal();
+});
 // contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
 
 // ---- //Esc Button Modal Close ---------------------------------------------------------
