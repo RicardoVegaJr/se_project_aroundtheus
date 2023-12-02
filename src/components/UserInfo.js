@@ -4,8 +4,7 @@ export default class UserInfo {
     this.aboutEl = document.querySelector(aboutSelector);
   }
   getUserInfo() {
-    this.nameEl.textContent.reset(), this.aboutEl.textContent.reset();
-    return { name, job };
+    return { name: this.nameEl.textContent, job: this.aboutEl.textContent };
   }
 
   setUserInfo(data) {
