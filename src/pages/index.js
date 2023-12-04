@@ -187,7 +187,16 @@ contentAddButton.addEventListener("click", () => {
 //   }
 // }
 
-function handleProfileFormSubmit() {
+// const submitButtonEvent = document.querySelector(".modal__form");
+
+// submitButtonEvent.addEventListener("submit", () =>
+//   newUserInfo.setUserInfo({
+//     name: nameInput.value,
+//     about: jobInput.value,
+//   })
+// );
+
+function handleProfileFormSubmit(userInputValues) {
   // profileName.textContent = nameInput.value;
   // profileJob.textContent = jobInput.value;
   newUserInfo.setUserInfo({
@@ -197,7 +206,7 @@ function handleProfileFormSubmit() {
   profileCardPopup.closeModal(profileEditModal);
 }
 
-function handleCardFormSubmit() {
+function handleCardFormSubmit(cardValues) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
