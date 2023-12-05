@@ -196,19 +196,19 @@ contentAddButton.addEventListener("click", () => {
 //   })
 // );
 
-function handleProfileFormSubmit(userInputValues) {
+function handleProfileFormSubmit(inputValues) {
   // profileName.textContent = nameInput.value;
   // profileJob.textContent = jobInput.value;
   newUserInfo.setUserInfo({
-    name: nameInput.value,
-    about: jobInput.value,
+    name: inputValues.name,
+    about: inputValues.job,
   });
-  profileCardPopup.closeModal(profileEditModal);
+  profileCardPopup.closeModal();
 }
 
 function handleCardFormSubmit(cardValues) {
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
+  const name = cardValues.name;
+  const link = cardValues.link;
   renderCard({ name, link }, cardListEl);
   // contentFormElement.reset();
   // const submitButton = document.querySelector("#modalContentSubmit");

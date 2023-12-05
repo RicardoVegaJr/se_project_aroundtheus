@@ -13,13 +13,24 @@ export default class PopupWithForm extends Popup {
   }
   _handleFormSubmitButton = (evt) => {
     evt.preventDefault();
-    this._handleFormSubmit();
+    this._handleFormSubmit(this._getInputValues());
   };
   setEventListeners() {
     this._popupForm.addEventListener("submit", this._handleFormSubmitButton);
     super.setEventListeners();
 
     // this._popupForm.addEventListener("submit", this._handleFormSubmitButton);
+  }
+  _getInputValues() {
+    const inputList = [...this.popup.querySelectorAll(".input")];
+
+    const inputValues = {};
+
+    for (const input of inputList) {
+      inputValues[input.name] = input.value;
+    }
+
+    return inputValues;
   }
   // toggleButtonState() {
   //   this._modalSubmitButton = this._popupForm.querySelector(
