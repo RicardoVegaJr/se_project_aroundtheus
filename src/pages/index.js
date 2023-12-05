@@ -199,16 +199,17 @@ contentAddButton.addEventListener("click", () => {
 function handleProfileFormSubmit(inputValues) {
   // profileName.textContent = nameInput.value;
   // profileJob.textContent = jobInput.value;
-  newUserInfo.setUserInfo({
-    name: inputValues.name,
-    about: inputValues.job,
-  });
+  // newUserInfo.setUserInfo({
+  //   name: inputValues.name,
+  //   about: inputValues.job,
+  // });
+  newUserInfo.setUserInfo(inputValues);
   profileCardPopup.closeModal();
 }
 
 function handleCardFormSubmit(cardValues) {
-  const name = cardValues.name;
-  const link = cardValues.link;
+  const name = cardValues.title;
+  const link = cardValues.url;
   renderCard({ name, link }, cardListEl);
   // contentFormElement.reset();
   // const submitButton = document.querySelector("#modalContentSubmit");

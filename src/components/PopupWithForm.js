@@ -22,14 +22,14 @@ export default class PopupWithForm extends Popup {
     // this._popupForm.addEventListener("submit", this._handleFormSubmitButton);
   }
   _getInputValues() {
-    const inputList = [...this.popup.querySelectorAll(".input")];
+    const inputList = [...this._popupForm.querySelectorAll(".input")];
 
     const inputValues = {};
 
     for (const input of inputList) {
       inputValues[input.name] = input.value;
     }
-
+    // console.log(inputValues);
     return inputValues;
   }
   // toggleButtonState() {
