@@ -151,6 +151,9 @@ const editProfileButton = document.querySelector(
 editProfileButton.addEventListener("click", () => {
   // nameInput.value = profileName.textContent;
   // jobInput.value = profileJob.textContent;
+  const data = newUserInfo.getUserInfo();
+  nameInput.value = data.name;
+  jobInput.value = data.job;
   cardFormValidator.toggleButtonState();
   profileCardPopup.openModal();
 });
