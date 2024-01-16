@@ -33,6 +33,15 @@
   max-height: 330px;
 }
 
+.delete_modal__container {
+  position: relative;
+  padding: 50px;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 430px;
+  max-height: 181px;
+}
+
 .modal__title {
   font-family: "Inter", "Times New Roman", Times, serif;
   font-style: normal;
@@ -42,6 +51,19 @@
   color: #000000;
   margin-top: 0;
   margin-bottom: 54px;
+}
+
+.delete_modal__title {
+  font-family: "Inter", "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 50px;
+  width: 358px;
+  height: 23px;
 }
 
 .modal__form {
@@ -96,6 +118,26 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+.delete_modal__button {
+  cursor: pointer;
+  height: 50px;
+  width: 358px;
+  margin-top: 0;
+  background: #000000;
+  border-radius: 2px;
+  font-family: "Inter", "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
   text-align: center;
   color: #ffffff;
   border: none;

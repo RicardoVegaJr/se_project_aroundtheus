@@ -5,7 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/section.js";
 import UserInfo from "../components/UserInfo.js";
-
+import Api from "../components/API.js";
 import "../pages/index.css";
 
 // setTimeout(() => {
@@ -246,3 +246,30 @@ profileFormValidator.enableValidation();
 
 const cardFormValidator = new FormValidator(config, contentFormElement);
 cardFormValidator.enableValidation();
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+    "Content-Type": "application/json",
+  },
+});
+
+// api.getInitialCards();
+// api.loadUserInfo();
+// api.editProfileInfo();
+// api.loadUserInfo();
+// api.addNewCard();
+// api.likeCard();
+// api.removeCardLike();
+// api.deleteCard();
+// api.deleteCard();
+// fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+//   headers: {
+//     authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+//   },
+// })
+//   .then((res) => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
