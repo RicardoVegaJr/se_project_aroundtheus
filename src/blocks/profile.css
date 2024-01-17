@@ -31,7 +31,27 @@
   border-radius: 100%;
   max-width: 120px;
   max-height: 120px;
+  z-index: 1;
 }
+
+.profile__image:hover {
+  opacity: 0.5;
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.profile__image_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+}
+.profile__image_icon {
+  position: absolute;
+}
+
 .profile__info {
   display: -ms-grid;
   display: grid;

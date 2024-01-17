@@ -122,6 +122,13 @@ const profileCardPopup = new PopupWithForm({
   handleFormSubmit: handleProfileFormSubmit,
 });
 
+const deleteConfirmation = new PopupWithForm({
+  popupSelector: "#deleteContent",
+  handleFormSubmit: handleProfileFormSubmit,
+});
+
+// deleteConfirmation.openModal();
+
 const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
 });
@@ -172,6 +179,7 @@ contentAddButton.addEventListener("click", () => {
   cardFormValidator.toggleButtonState();
   newCardPopup.openModal();
 });
+
 // contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
 
 // ---- //Esc Button Modal Close ---------------------------------------------------------
@@ -264,6 +272,7 @@ const api = new Api({
 // api.removeCardLike();
 // api.deleteCard();
 // api.deleteCard();
+api.updateProfilePhoto();
 // fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
 //   headers: {
 //     authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
