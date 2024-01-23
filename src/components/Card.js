@@ -34,6 +34,18 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
+        // this._deleteConfirmation.classList.add("modal_opened");
+        // const isConfirmed = document.querySelector("#confirmDeletion");
+        // if (isConfirmed) {
+        //   console.log("Deletion confirmed!");
+        //   this._handleDeleteCard();
+        //   this._handleCardDeleteClick({ name: this._name, link: this._link });
+        //   this._deleteConfirmation.classList.remove("modal_opened");
+        // } else {
+        //   console.log("Deletion canceled.");
+        //   this._deleteConfirmation.classList.remove("modal_opened");
+        // }
+
         this._handleDeleteCard();
         this._handleCardDeleteClick({ name: this._name, link: this._link });
       });

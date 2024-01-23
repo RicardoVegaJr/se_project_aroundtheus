@@ -122,10 +122,10 @@ const profileCardPopup = new PopupWithForm({
   handleFormSubmit: handleProfileFormSubmit,
 });
 
-// const deleteConfirmation = new PopupWithForm({
-//   popupSelector: "#deleteContent",
-//   handleFormSubmit: handleCardDeleteClick,
-// });
+const deleteConfirmation = new PopupWithForm({
+  popupSelector: "#deleteContent",
+  handleFormSubmit: handleCardDeleteClick,
+});
 
 const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
