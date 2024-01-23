@@ -122,12 +122,10 @@ const profileCardPopup = new PopupWithForm({
   handleFormSubmit: handleProfileFormSubmit,
 });
 
-const deleteConfirmation = new PopupWithForm({
-  popupSelector: "#deleteContent",
-  handleFormSubmit: handleProfileFormSubmit,
-});
-
-// deleteConfirmation.openModal();
+// const deleteConfirmation = new PopupWithForm({
+//   popupSelector: "#deleteContent",
+//   handleFormSubmit: handleCardDeleteClick,
+// });
 
 const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
@@ -138,8 +136,17 @@ cardSection.renderItems(cardData);
 
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
+function handleCardDeleteClick(data) {
+  console.log(data);
+}
+
 function renderCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", handleImageClick);
+  const cardElement = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleCardDeleteClick
+  );
   // cardListEl.prepend(cardElement.getView());
   cardSection.addItem(cardElement.getView());
 }
@@ -272,7 +279,7 @@ const api = new Api({
 // api.removeCardLike();
 // api.deleteCard();
 // api.deleteCard();
-api.updateProfilePhoto();
+// api.updateProfilePhoto();
 // fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
 //   headers: {
 //     authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",

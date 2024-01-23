@@ -1,6 +1,6 @@
 export default class Api {
-  constructor(options) {
-    // constructor body
+  constructor(userInput) {
+    this.userInput = userInput;
   }
 
   getInitialCards() {
@@ -34,10 +34,14 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        about: "Physicist and Chemist",
+        name: this.userInput.name,
+        about: this.userInput.about,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
   }
   addNewCard() {
     return fetch("https://around-api.en.tripleten-services.com/v1/cards", {

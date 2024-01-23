@@ -8,11 +8,17 @@
 // import PopupWithImage from "../scripts/PopupWithImage.js";
 
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor(
+    { name, link },
+    cardSelector,
+    handleImageClick,
+    handleCardDeleteClick
+  ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleCardDeleteClick = handleCardDeleteClick;
   }
   _setEventListeners() {
     // ---- card like button -----------------------------------------------------------------
@@ -29,6 +35,7 @@ export default class Card {
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
         this._handleDeleteCard();
+        this._handleCardDeleteClick({ name: this._name, link: this._link });
       });
     this._cardElement
       .querySelector(".card-image")
