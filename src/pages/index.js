@@ -8,6 +8,11 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import "../pages/index.css";
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  authToken: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+});
+
 // setTimeout(() => {
 //   profileCardPopup.closeModal();
 // }, 3000);
@@ -132,7 +137,14 @@ const contentCardPreview = new PopupWithImage({
 });
 
 const cardSection = new Section({ items: cardData }, renderCard, "#section");
-cardSection.renderItems(cardData);
+
+// cardSection.renderItems(cardData);
+
+api.getInitialCards().then((cards) => {
+  const cardSection = new Section({ items: cards }, renderCard, "#section");
+  console.log(cards);
+  cardSection.renderItems(cards);
+});
 
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
@@ -261,14 +273,6 @@ profileFormValidator.enableValidation();
 
 const cardFormValidator = new FormValidator(config, contentFormElement);
 cardFormValidator.enableValidation();
-
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
-    "Content-Type": "application/json",
-  },
-});
 
 // api.getInitialCards();
 // api.loadUserInfo();

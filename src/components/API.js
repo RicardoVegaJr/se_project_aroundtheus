@@ -1,19 +1,24 @@
 export default class Api {
-  constructor(userInput) {
-    this.userInput = userInput;
+  constructor({ baseUrl, authToken }) {
+    this._baseUrl = baseUrl;
+    this._authToken = authToken;
   }
 
   getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+        authorization: this._authToken,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   loadUserInfo() {
     return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
