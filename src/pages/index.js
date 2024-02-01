@@ -3,15 +3,11 @@ import FormValidator from "../components/FormValidator.js";
 // import { openModal, closeModal } from "../utils/utils.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import Section from "../components/section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import "../pages/index.css";
-
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  authToken: "23172f33-55e2-4e0e-a695-0bae3ab40106",
-});
 
 // setTimeout(() => {
 //   profileCardPopup.closeModal();
@@ -44,32 +40,32 @@ const api = new Api({
 //   },
 // ];
 
-const cardData = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
+// const cardData = [
+//   {
+//     name: "Yosemite Valley",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+//   },
+//   {
+//     name: "Lake Louise",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+//   },
+//   {
+//     name: "Bald Mountains",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+//   },
+//   {
+//     name: "Latemar",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+//   },
+//   {
+//     name: "Vanoise National Park",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+//   },
+//   {
+//     name: "Lago di Braies",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+//   },
+// ];
 
 // const card = new Card(cardData, "#card-template");
 // card.getView();
@@ -96,6 +92,9 @@ const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
 // const previewImageElement = document.querySelector(".modal__preview-image");
 const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 // const modalPreviewTitle = document.querySelector(".modal__preview-title");
+const editProfileButton = document.querySelector(
+  "#profile__edit-button-action"
+);
 
 // cardData.forEach((card) => {
 //   renderCard(card);
@@ -117,6 +116,58 @@ const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
 //   document.removeEventListener("click", handleOverlayClose);
 // }
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  authToken: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+});
+
+api.getInitialCards().then((cards) => {
+  const cardSection = new Section({ items: cards }, renderCard, "#section");
+
+  function renderCard(cards) {
+    const cardElement = new Card(
+      cards,
+      "#card-template",
+      handleImageClick,
+      handleCardDeleteClick(card._id)
+    );
+    // cardListEl.prepend(cardElement.getView());
+    cardSection.addItem(cardElement.getView());
+  }
+  cardSection.renderItems(cards);
+});
+
+api.loadUserInfo().then((res) => {
+  const newUserInfo = new UserInfo(res.name, res.about);
+
+  editProfileButton.addEventListener("click", () => {
+    // nameInput.value = profileName.textContent;
+    // jobInput.value = profileJob.textContent;
+    // const data = newUserInfo.getUserInfo();
+    nameInput.value = res.name;
+    jobInput.value = res.about;
+    cardFormValidator.toggleButtonState();
+    profileCardPopup.openModal();
+  });
+});
+
+// api
+//   .editProfileInfo({ name: inputValues.name, about: inputValues.about })
+//   .then((res) => {
+//     const newUserInfo = new UserInfo(res.name, res.about);
+//     function handleProfileFormSubmit(inputValues) {
+//       // profileName.textContent = nameInput.value;
+//       // profileJob.textContent = jobInput.value;
+//       // newUserInfo.setUserInfo({
+//       //   name: inputValues.name,
+//       //   about: inputValues.job,
+//       // });
+//       newUserInfo.setUserInfo(inputValues);
+//       profileCardPopup.closeModal();
+//     }
+
+//   });
+
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
   handleFormSubmit: handleCardFormSubmit,
@@ -129,39 +180,42 @@ const profileCardPopup = new PopupWithForm({
 
 const deleteConfirmation = new PopupWithForm({
   popupSelector: "#deleteContent",
-  handleFormSubmit: handleCardDeleteClick,
 });
 
 const contentCardPreview = new PopupWithImage({
   popupSelector: ".js-preview-popup",
 });
 
-const cardSection = new Section({ items: cardData }, renderCard, "#section");
+// const cardSection = new Section({ items: cardData }, renderCard, "#section");
 
 // cardSection.renderItems(cardData);
 
-api.getInitialCards().then((cards) => {
-  const cardSection = new Section({ items: cards }, renderCard, "#section");
-  console.log(cards);
-  cardSection.renderItems(cards);
-});
+// const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
-const newUserInfo = new UserInfo("#profilename", "#profilejob");
-
-function handleCardDeleteClick(data) {
-  console.log(data);
+function handleCardDeleteClick(cardId) {
+  // make sure to pass the card id from Card.js
+  // right now you are passing name & link
+  // this function gets called from `Card.js`
+  deleteConfirmation.openModal();
+  deleteConfirmation.setSubmitAction(() => {
+    api.deleteCard(cardId).then((res) => {
+      console.log(res);
+    });
+    // this arrow function will get executed when the form is submitted
+    // call the API here and pass the cardId we get from Card
+  });
 }
 
-function renderCard(cardData) {
-  const cardElement = new Card(
-    cardData,
-    "#card-template",
-    handleImageClick,
-    handleCardDeleteClick
-  );
-  // cardListEl.prepend(cardElement.getView());
-  cardSection.addItem(cardElement.getView());
-}
+// function renderCard(cardData) {
+//   const cardElement = new Card(
+//     cardData,
+//     "#card-template",
+//     handleImageClick,
+//     handleCardDeleteClick
+//   );
+//   // cardListEl.prepend(cardElement.getView());
+//   cardSection.addItem(cardElement.getView());
+// }
 
 function handleImageClick(cardData) {
   console.log(cardData);
@@ -170,19 +224,15 @@ function handleImageClick(cardData) {
 
 // ---- Profile Modal open and close event listeners -------------------------------------
 
-const editProfileButton = document.querySelector(
-  "#profile__edit-button-action"
-);
-
-editProfileButton.addEventListener("click", () => {
-  // nameInput.value = profileName.textContent;
-  // jobInput.value = profileJob.textContent;
-  const data = newUserInfo.getUserInfo();
-  nameInput.value = data.name;
-  jobInput.value = data.job;
-  cardFormValidator.toggleButtonState();
-  profileCardPopup.openModal();
-});
+// editProfileButton.addEventListener("click", () => {
+//   // nameInput.value = profileName.textContent;
+//   // jobInput.value = profileJob.textContent;
+//   const data = newUserInfo.getUserInfo();
+//   nameInput.value = data.name;
+//   jobInput.value = data.job;
+//   cardFormValidator.toggleButtonState();
+//   profileCardPopup.openModal();
+// });
 
 // profileEditModalClose.addEventListener("click", () =>
 //   profileCardPopup.closeModal()

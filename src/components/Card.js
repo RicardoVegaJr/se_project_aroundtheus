@@ -12,13 +12,15 @@ export default class Card {
     { name, link },
     cardSelector,
     handleImageClick,
-    handleCardDeleteClick
+    handleCardDeleteClick,
+    cardId
   ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
+    this._cardId = cardId;
   }
   _setEventListeners() {
     // ---- card like button -----------------------------------------------------------------
@@ -47,7 +49,7 @@ export default class Card {
         // }
 
         this._handleDeleteCard();
-        this._handleCardDeleteClick({ name: this._name, link: this._link });
+        this._handleCardDeleteClick(this._cardId);
       });
     this._cardElement
       .querySelector(".card-image")

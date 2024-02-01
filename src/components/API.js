@@ -21,38 +21,48 @@ export default class Api {
       });
   }
   loadUserInfo() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+        authorization: this._authToken,
       },
     })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
-  editProfileInfo() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+  editProfileInfo({ userInputData }) {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+        authorization: this._authToken,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: this.userInput.name,
-        about: this.userInput.about,
+        name: userInputData.name,
+        about: userInputData.about,
       }),
     })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
   addNewCard() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
-        authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+        authorization: this._authToken,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -62,20 +72,22 @@ export default class Api {
     });
   }
   deleteCard() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/cards/65a6c57ce1454c001ad77af1",
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: "Miami",
-          link: "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-        }),
-      }
-    );
+    return fetch(`${this._baseUrl}/cards/`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   likeCard() {
     return fetch(
