@@ -129,7 +129,7 @@ api.getInitialCards().then((cards) => {
       cards,
       "#card-template",
       handleImageClick,
-      handleCardDeleteClick(card._id)
+      handleCardDeleteClick
     );
     // cardListEl.prepend(cardElement.getView());
     cardSection.addItem(cardElement.getView());
@@ -137,20 +137,24 @@ api.getInitialCards().then((cards) => {
   cardSection.renderItems(cards);
 });
 
-api.loadUserInfo().then((res) => {
-  const newUserInfo = new UserInfo(res.name, res.about);
+const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
-  editProfileButton.addEventListener("click", () => {
-    // nameInput.value = profileName.textContent;
-    // jobInput.value = profileJob.textContent;
-    // const data = newUserInfo.getUserInfo();
-    nameInput.value = res.name;
-    jobInput.value = res.about;
-    cardFormValidator.toggleButtonState();
-    profileCardPopup.openModal();
+api.loadUserInfo().then((userData) => {
+  newUserInfo.setUserInfo({
+    userName: userData.name,
+    userDescription: userData.about,
   });
 });
 
+editProfileButton.addEventListener("click", () => {
+  // nameInput.value = profileName.textContent;
+  // jobInput.value = profileJob.textContent;
+  // const data = newUserInfo.getUserInfo();
+  nameInput.value = res.name;
+  jobInput.value = res.about;
+  cardFormValidator.toggleButtonState();
+  profileCardPopup.openModal();
+});
 // api
 //   .editProfileInfo({ name: inputValues.name, about: inputValues.about })
 //   .then((res) => {

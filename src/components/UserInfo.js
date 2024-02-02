@@ -7,9 +7,9 @@ export default class UserInfo {
     return { name: this.nameEl.textContent, job: this.aboutEl.textContent };
   }
 
-  setUserInfo(data) {
+  setUserInfo({ userName, userDescription }) {
     //which takes new user data and adds it to the page. This method should be used after successful submission of the profile form.
-    this.nameEl.textContent = data.name;
-    this.aboutEl.textContent = data.about;
+    this.nameEl.textContent = userName;
+    this.aboutEl.textContent = userDescription;
   }
 }
