@@ -58,7 +58,7 @@ export default class Api {
         console.log(err);
       });
   }
-  addNewCard() {
+  addNewCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
@@ -66,13 +66,13 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Miami",
-        link: "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
+        name,
+        link,
       }),
     });
   }
-  deleteCard() {
-    return fetch(`${this._baseUrl}/cards/`, {
+  deleteCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: {
         authorization: this._authToken,

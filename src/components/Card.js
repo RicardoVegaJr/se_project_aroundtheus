@@ -8,19 +8,16 @@
 // import PopupWithImage from "../scripts/PopupWithImage.js";
 
 export default class Card {
-  constructor(
-    { name, link },
-    cardSelector,
-    handleImageClick,
-    handleCardDeleteClick,
-    cardId
-  ) {
-    this._name = name;
-    this._link = link;
+  constructor(cards, cardSelector, handleImageClick, handleCardDeleteClick) {
+    this._name = cards.name;
+    this._link = cards.link;
+    this._id = cards._id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
-    this._cardId = cardId;
+  }
+  getId() {
+    return this._id;
   }
   _setEventListeners() {
     // ---- card like button -----------------------------------------------------------------
@@ -47,9 +44,9 @@ export default class Card {
         //   console.log("Deletion canceled.");
         //   this._deleteConfirmation.classList.remove("modal_opened");
         // }
-
+        this.getId();
         this._handleDeleteCard();
-        this._handleCardDeleteClick(this._cardId);
+        this._handleCardDeleteClick(this._id);
       });
     this._cardElement
       .querySelector(".card-image")

@@ -123,7 +123,6 @@ const api = new Api({
 
 api.getInitialCards().then((cards) => {
   const cardSection = new Section({ items: cards }, renderCard, "#section");
-
   function renderCard(cards) {
     const cardElement = new Card(
       cards,
@@ -202,13 +201,13 @@ function handleCardDeleteClick(cardId) {
   // this function gets called from `Card.js`
   deleteConfirmation.openModal();
   deleteConfirmation.setSubmitAction(() => {
-    api.deleteCard(cardId).then((res) => {
-      console.log(res);
-    });
+    api.deleteCard(cardId).then((res) => console.log(res));
+    // api.deleteCard(cardId).then((res) => console.log(res));
     // this arrow function will get executed when the form is submitted
     // call the API here and pass the cardId we get from Card
   });
 }
+// api.deleteCard("65a6c9e9e1454c001ad77b1b").then((res) => console.log(res));
 
 // function renderCard(cardData) {
 //   const cardElement = new Card(
