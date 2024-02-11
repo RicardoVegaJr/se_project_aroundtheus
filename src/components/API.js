@@ -36,7 +36,7 @@ export default class Api {
         console.log(err);
       });
   }
-  editProfileInfo({ userInputData }) {
+  editProfileInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -44,8 +44,8 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: userInputData.name,
-        about: userInputData.about,
+        name,
+        about,
       }),
     })
       .then((res) => {

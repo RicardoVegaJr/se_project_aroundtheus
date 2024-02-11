@@ -149,10 +149,29 @@ editProfileButton.addEventListener("click", () => {
   // nameInput.value = profileName.textContent;
   // jobInput.value = profileJob.textContent;
   // const data = newUserInfo.getUserInfo();
-  nameInput.value = res.name;
-  jobInput.value = res.about;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
   cardFormValidator.toggleButtonState();
   profileCardPopup.openModal();
+  profileCardPopup.setSubmitAction(() => {
+    const name = nameInput.value;
+    const about = jobInput.value;
+    api
+      .editProfileInfo({
+        name: name,
+        about: about,
+      })
+      .then((res) => {
+        profileName.textContent = name;
+        profileJob.textContent = about;
+        console.log(res);
+      })
+      //write code to update DOM to replace console.log(res)
+      .catch((err) => {
+        console.log(err);
+      });
+    profileCardPopup.closeModal();
+  });
 });
 // api
 //   .editProfileInfo({ name: inputValues.name, about: inputValues.about })
