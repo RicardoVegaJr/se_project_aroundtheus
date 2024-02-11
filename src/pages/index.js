@@ -4,7 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
-import Section from "../components/section.js";
+import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import "../pages/index.css";
@@ -195,19 +195,21 @@ const contentCardPreview = new PopupWithImage({
 
 // const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
-function handleCardDeleteClick(cardId) {
+function handleCardDeleteClick(card) {
   // make sure to pass the card id from Card.js
   // right now you are passing name & link
   // this function gets called from `Card.js`
+  console.log(card);
   deleteConfirmation.openModal();
   deleteConfirmation.setSubmitAction(() => {
-    api.deleteCard(cardId).then((res) => console.log(res));
+    api.deleteCard(card.getId()).then(() => card.removeCard());
+    deleteConfirmation.closeModal();
     // api.deleteCard(cardId).then((res) => console.log(res));
     // this arrow function will get executed when the form is submitted
     // call the API here and pass the cardId we get from Card
   });
 }
-// api.deleteCard("65a6c9e9e1454c001ad77b1b").then((res) => console.log(res));
+// api.deleteCard("65c40202879b84001ae3eb9a").then((res) => card.removeCard());
 
 // function renderCard(cardData) {
 //   const cardElement = new Card(

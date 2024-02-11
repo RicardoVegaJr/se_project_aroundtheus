@@ -44,9 +44,8 @@ export default class Card {
         //   console.log("Deletion canceled.");
         //   this._deleteConfirmation.classList.remove("modal_opened");
         // }
-        this.getId();
         this._handleDeleteCard();
-        this._handleCardDeleteClick(this._id);
+        this._handleCardDeleteClick(this);
       });
     this._cardElement
       .querySelector(".card-image")
@@ -60,6 +59,9 @@ export default class Card {
 
   _handleDeleteCard() {
     this._cardElement.remove();
+  }
+  removeCard() {
+    this.remove();
   }
 
   _handleLikeIcon() {
