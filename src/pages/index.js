@@ -202,7 +202,7 @@ function handleCardDeleteClick(card) {
   console.log(card);
   deleteConfirmation.openModal();
   deleteConfirmation.setSubmitAction(() => {
-    api.deleteCard(card.getId()).then(() => card.removeCard());
+    api.deleteCard(card.getId()).then(() => card.remove());
     deleteConfirmation.closeModal();
     // api.deleteCard(cardId).then((res) => console.log(res));
     // this arrow function will get executed when the form is submitted
