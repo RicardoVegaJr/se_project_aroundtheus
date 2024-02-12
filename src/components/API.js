@@ -89,29 +89,41 @@ export default class Api {
         console.log(err);
       });
   }
-  likeCard() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/cards/65a6c9e9e1454c001ad77b1b/likes",
-      {
-        method: "PUT",
-        headers: {
-          authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  addCardLike(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   removeCardLike() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/cards/65a6c9e9e1454c001ad77b1b/likes",
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   updateProfilePhoto() {
     return fetch(

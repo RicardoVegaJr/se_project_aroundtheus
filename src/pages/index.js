@@ -136,6 +136,10 @@ api.getInitialCards().then((cards) => {
   cardSection.renderItems(cards);
 });
 
+// Test
+
+// Test
+
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
 api.loadUserInfo().then((userData) => {
@@ -166,7 +170,6 @@ editProfileButton.addEventListener("click", () => {
         profileJob.textContent = about;
         console.log(res);
       })
-      //write code to update DOM to replace console.log(res)
       .catch((err) => {
         console.log(err);
       });
@@ -221,14 +224,19 @@ function handleCardDeleteClick(card) {
   console.log(card);
   deleteConfirmation.openModal();
   deleteConfirmation.setSubmitAction(() => {
-    api.deleteCard(card.getId()).then(() => card.remove());
+    api
+      .deleteCard(card.getId())
+      .then(() => card.remove())
+      .catch((err) => {
+        console.log(err);
+      });
     deleteConfirmation.closeModal();
     // api.deleteCard(cardId).then((res) => console.log(res));
     // this arrow function will get executed when the form is submitted
     // call the API here and pass the cardId we get from Card
   });
 }
-// api.deleteCard("65c40202879b84001ae3eb9a").then((res) => card.removeCard());
+// api.deleteCard("65c95e4e879b84001ae42ca8").then((res) => card.removeCard());
 
 // function renderCard(cardData) {
 //   const cardElement = new Card(
@@ -314,14 +322,27 @@ function handleProfileFormSubmit(inputValues) {
 function handleCardFormSubmit(cardValues) {
   const name = cardValues.title;
   const link = cardValues.url;
-  renderCard({ name, link }, cardListEl);
+  api
+    .addNewCard({
+      name,
+      link,
+    })
+    .then((card) => console.log(card))
+    .catch((err) => {
+      console.log(err);
+    });
   // contentFormElement.reset();
   // const submitButton = document.querySelector("#modalContentSubmit");
   // submitButton.classList.toggle("modal__button_disabled");
   // submitButton.setAttribute("disabled", "true");
   newCardPopup.closeModal();
 }
-
+// api
+//   .addNewCard({
+//     name: "name",
+//     link: "https://unsplash.com/photos/a-large-body-of-water-sitting-under-a-pink-sky-sbNlS7dWqKE",
+//   })
+//   .then((res) => console.log(res));
 const config = {
   //   formSelector: ".popup__form",
   //   inputSelector: ".popup__input",
