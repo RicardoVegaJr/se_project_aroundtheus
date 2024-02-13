@@ -128,7 +128,9 @@ api.getInitialCards().then((cards) => {
       cards,
       "#card-template",
       handleImageClick,
-      handleCardDeleteClick
+      handleCardDeleteClick,
+      handleCardLike,
+      handleCardLikeRemove
     );
     // cardListEl.prepend(cardElement.getView());
     cardSection.addItem(cardElement.getView());
@@ -337,12 +339,36 @@ function handleCardFormSubmit(cardValues) {
   // submitButton.setAttribute("disabled", "true");
   newCardPopup.closeModal();
 }
+
+function handleCardLike(card) {
+  console.log(card.getId());
+  api
+    .addCardLike(card.getId())
+    .then(() => handleLikeIcon())
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function handleCardLikeRemove(card) {
+  console.log(card.getId());
+  api
+    .removeCardLike(card.getId())
+    .then(() => handleLikeIcon())
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+//test
 // api
-//   .addNewCard({
-//     name: "name",
-//     link: "https://unsplash.com/photos/a-large-body-of-water-sitting-under-a-pink-sky-sbNlS7dWqKE",
-//   })
-//   .then((res) => console.log(res));
+//   .removeCardLike("65c971d1879b84001ae42ee0")
+//   .then((card) => console.log(card))
+//   .catch((err) => {
+//     console.log(err);
+//   });
+//test
+
 const config = {
   //   formSelector: ".popup__form",
   //   inputSelector: ".popup__input",

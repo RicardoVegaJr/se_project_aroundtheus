@@ -8,13 +8,23 @@
 // import PopupWithImage from "../scripts/PopupWithImage.js";
 
 export default class Card {
-  constructor(cards, cardSelector, handleImageClick, handleCardDeleteClick) {
+  constructor(
+    cards,
+    cardSelector,
+    handleImageClick,
+    handleCardDeleteClick,
+    handleCardLike,
+    _handleCardLikeRemove
+  ) {
     this._name = cards.name;
     this._link = cards.link;
     this._id = cards._id;
+    this._isLiked = cards.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleCardDeleteClick = handleCardDeleteClick;
+    this._handleCardLike = handleCardLike;
+    this._handleCardLikeRemove = _handleCardLikeRemove;
   }
   getId() {
     return this._id;
@@ -25,7 +35,13 @@ export default class Card {
     this._cardElement
       .querySelector(".card-heart")
       .addEventListener("click", () => {
-        this._handleLikeIcon();
+        if (this._isLiked) {
+          // this._handleLikeIcon();
+          // this._handleCardLike(this);
+          this._handleCardLikeRemove(this);
+        } else {
+          this._handleCardLike(this);
+        }
       });
 
     // ---- card delete button ---------------------------------------------------------------
@@ -65,10 +81,20 @@ export default class Card {
     this._cardElement.remove();
   }
 
-  _handleLikeIcon() {
+  handleLikeIcon() {
     this._cardElement
       .querySelector(".card-heart")
       .classList.toggle("card-heart_active");
+  }
+  // _handleLikeIconRemove() {
+  //   this._cardElement
+  //     .querySelector(".card-heart")
+  //     .classList.remove("card-heart_active");
+  // }
+  _handleLikeIconAdd() {
+    this._cardElement
+      .querySelector(".card-heart")
+      .classList.add("card-heart_active");
   }
   getView() {
     // ---- get the card view ----------------------------------------------------------------
@@ -82,6 +108,12 @@ export default class Card {
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = `Photo of ${this._name}`;
     this._cardTitleEl.textContent = this._name;
+
+    if (this._isLiked) {
+      // this._handleLikeIcon();
+      // this._handleCardLike(this);
+      this._handleLikeIconAdd();
+    }
     // ---- set event listener ---------------------------------------------------------------
 
     this._setEventListeners();

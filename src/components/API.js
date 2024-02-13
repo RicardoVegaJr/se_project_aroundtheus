@@ -107,7 +107,7 @@ export default class Api {
         console.log(err);
       });
   }
-  removeCardLike() {
+  removeCardLike(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
       method: "DELETE",
       headers: {
