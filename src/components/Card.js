@@ -36,9 +36,8 @@ export default class Card {
       .querySelector(".card-heart")
       .addEventListener("click", () => {
         if (this._isLiked) {
-          // this._handleLikeIcon();
-          // this._handleCardLike(this);
           this._handleCardLikeRemove(this);
+          this._isLiked = !this._isLiked;
         } else {
           this._handleCardLike(this);
         }
@@ -85,13 +84,24 @@ export default class Card {
     this._cardElement
       .querySelector(".card-heart")
       .classList.toggle("card-heart_active");
+    // const cardHeart = this._cardElement.querySelector(".card-heart");
+
+    // this._isLiked = !this._isLiked;
+
+    // if (this._isLiked) {
+    //   cardHeart.classList.add("card-heart_active");
+    //   this._handleCardLikeRemove(this);
+    // } else {
+    //   cardHeart.classList.remove("card-heart_active");
+    //   this._handleCardLike(this);
+    // }
   }
   // _handleLikeIconRemove() {
   //   this._cardElement
   //     .querySelector(".card-heart")
   //     .classList.remove("card-heart_active");
   // }
-  _handleLikeIconAdd() {
+  _loadLikes() {
     this._cardElement
       .querySelector(".card-heart")
       .classList.add("card-heart_active");
@@ -112,7 +122,7 @@ export default class Card {
     if (this._isLiked) {
       // this._handleLikeIcon();
       // this._handleCardLike(this);
-      this._handleLikeIconAdd();
+      this._loadLikes();
     }
     // ---- set event listener ---------------------------------------------------------------
 

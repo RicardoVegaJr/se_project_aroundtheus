@@ -344,7 +344,7 @@ function handleCardLike(card) {
   console.log(card.getId());
   api
     .addCardLike(card.getId())
-    .then(() => handleLikeIcon())
+    .then(() => card.handleLikeIcon())
     .catch((err) => {
       console.log(err);
     });
@@ -354,7 +354,7 @@ function handleCardLikeRemove(card) {
   console.log(card.getId());
   api
     .removeCardLike(card.getId())
-    .then(() => handleLikeIcon())
+    .then(() => card.handleLikeIcon())
     .catch((err) => {
       console.log(err);
     });
