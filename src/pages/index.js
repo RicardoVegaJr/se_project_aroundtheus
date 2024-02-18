@@ -72,7 +72,7 @@ import "../pages/index.css";
 
 const profileEditModal = document.querySelector("#profileModal");
 const profilePhotoEditModal = document.querySelector("#profilePhotoModal");
-const profileImage = document.querySelector("#profileImage");
+const profilePhoto = document.querySelector("#profileImage");
 const profileEditModalClose = document.querySelector("#modalProfileClose");
 const contentModal = document.querySelector("#contentModal");
 const contentAddButton = document.querySelector("#content__add-button-action");
@@ -150,9 +150,6 @@ api.loadUserInfo().then((userData) => {
 });
 
 editProfileButton.addEventListener("click", () => {
-  // nameInput.value = profileName.textContent;
-  // jobInput.value = profileJob.textContent;
-  // const data = newUserInfo.getUserInfo();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   cardFormValidator.toggleButtonState();
@@ -160,11 +157,17 @@ editProfileButton.addEventListener("click", () => {
   profileCardPopup.setSubmitAction(() => {
     const name = nameInput.value;
     const about = jobInput.value;
+    const submitButton = document.getElementById("modalProfileSubmit");
+
+    const originalButtonText = submitButton.textContent;
+    // Change button text to "Saving..."
+    submitButton.textContent = "Saving...";
     api
       .editProfileInfo({
         name: name,
         about: about,
       })
+      .then((submitButton.textContent = originalButtonText))
       .then((res) => {
         profileName.textContent = name;
         profileJob.textContent = about;
@@ -172,12 +175,13 @@ editProfileButton.addEventListener("click", () => {
       })
       .catch((err) => {
         console.log(err);
+        submitButton.textContent = originalButtonText;
       });
     profileCardPopup.closeModal();
   });
 });
 
-profileImage.addEventListener("click", () => {
+profilePhoto.addEventListener("click", () => {
   profilePhotoEdit.openModal();
 });
 
@@ -319,24 +323,35 @@ contentAddButton.addEventListener("click", () => {
 //   })
 // );
 
-function handleProfilePhotoSubmit(photoLink) {
-  console.log(photoLink);
-  console.log(profileImage.src);
-  profilePhotoEdit.setSubmitAction(() => {
-    api
-      .updateProfilePhoto(photoLink)
-      .then(() => (profileImage.src = photoLink))
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+function handleProfilePhotoSubmit(inputValues) {
+  // profilePhotoEdit.setSubmitAction(() => {
+  const submitButton = document.getElementById("modalPhotoSubmit");
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
+  console.log(inputValues);
+  console.log(inputValues.avatar);
+  api
+    .updateProfilePhoto(inputValues.avatar)
+    .then((submitButton.textContent = originalButtonText))
+    .then(() => (profilePhoto.src = inputValues.avatar))
+    .catch((err) => {
+      console.log(err);
+      submitButton.textContent = originalButtonText;
+    });
+  // });
 
   profilePhotoEdit.closeModal();
 }
+// api
+//   .updateProfilePhoto(
+//     "https://images.pexels.com/photos/19986476/pexels-photo-19986476/free-photo-of-a-window-with-red-shutters-on-a-stone-wall.jpeg"
+//   )
+//   .then((res) => console.log(res));
 
 // api
 //   .updateProfilePhoto(
-//     "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+//     "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80"
 //   )
 //   .then((res) => console.log(res));
 
@@ -354,17 +369,22 @@ function handleProfileFormSubmit(inputValues) {
 function handleCardFormSubmit(cardValues) {
   const name = cardValues.title;
   const link = cardValues.url;
+  const submitButton = document.getElementById("modalContentSubmit");
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
   api
     .addNewCard({
       name,
       link,
     })
-    .then((card) => console.log(card))
+    .then(() => (submitButton.textContent = originalButtonText))
     .catch((err) => {
       console.log(err);
+      submitButton.textContent = originalButtonText;
     });
   // contentFormElement.reset();
-  // const submitButton = document.querySelector("#modalContentSubmit");
+
   // submitButton.classList.toggle("modal__button_disabled");
   // submitButton.setAttribute("disabled", "true");
   newCardPopup.closeModal();

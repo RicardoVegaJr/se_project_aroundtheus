@@ -125,15 +125,15 @@ export default class Api {
         console.log(err);
       });
   }
-  updateProfilePhoto({ photoLink }) {
+  updateProfilePhoto(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authToken,
       },
-      body: {
-        avatar: photoLink,
-      },
+      body: JSON.stringify({
+        avatar,
+      }),
     })
       .then((res) => {
         if (res.ok) {
