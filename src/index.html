@@ -32,6 +32,7 @@
               src="<%=require('./images/jacques-cousteau.png')%>"
               alt="profile photo "
               class="profile__image"
+              id="profileImage"
             />
           </div>
           <div class="profile__info">
@@ -119,6 +120,32 @@
       </div>
     </div>
     <!--Profile Edit Modal -->
+    <!--Change profile picture-->
+<div class="modal " id="profilePhotoModal">
+  <div class="modal__container">
+      <h2 class="modal__title">Change profile picture</h2>
+      <button class="modal__close" id="modalProfileClose" type="button"></button>
+      <form class="modal__form" id="modalprofileform">
+          <input
+              class="modal__edit input"
+              id="profilePictureLink"
+              name="profilePictureLink"
+              type="url"
+              placeholder="Profile Picture Link"
+              required
+          />
+          <span class="modal__error" id="profilePictureLink-error"></span>
+          <button
+              class="modal__button"
+              id="modalsubmit"
+              type="submit"
+          >
+              Save
+          </button>
+      </form>
+  </div>
+</div>
+  <!--Change profile picture-->
     <!--Add Content Modal -->
     <div class="modal" id="contentModal">
       <div class="modal__container">

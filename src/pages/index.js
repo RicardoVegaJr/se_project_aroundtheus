@@ -71,6 +71,8 @@ import "../pages/index.css";
 // card.getView();
 
 const profileEditModal = document.querySelector("#profileModal");
+const profilePhotoEditModal = document.querySelector("#profilePhotoModal");
+const profileImage = document.querySelector("#profileImage");
 const profileEditModalClose = document.querySelector("#modalProfileClose");
 const contentModal = document.querySelector("#contentModal");
 const contentAddButton = document.querySelector("#content__add-button-action");
@@ -138,10 +140,6 @@ api.getInitialCards().then((cards) => {
   cardSection.renderItems(cards);
 });
 
-// Test
-
-// Test
-
 const newUserInfo = new UserInfo("#profilename", "#profilejob");
 
 api.loadUserInfo().then((userData) => {
@@ -178,6 +176,11 @@ editProfileButton.addEventListener("click", () => {
     profileCardPopup.closeModal();
   });
 });
+
+profileImage.addEventListener("click", () => {
+  profilePhotoEdit.openModal();
+});
+
 // api
 //   .editProfileInfo({ name: inputValues.name, about: inputValues.about })
 //   .then((res) => {
@@ -203,6 +206,11 @@ const newCardPopup = new PopupWithForm({
 const profileCardPopup = new PopupWithForm({
   popupSelector: "#profileModal",
   handleFormSubmit: handleProfileFormSubmit,
+});
+
+const profilePhotoEdit = new PopupWithForm({
+  popupSelector: "#profilePhotoModal",
+  handleFormSubmit: handleProfilePhotoSubmit,
 });
 
 const deleteConfirmation = new PopupWithForm({
@@ -251,9 +259,10 @@ function handleCardDeleteClick(card) {
 //   cardSection.addItem(cardElement.getView());
 // }
 
-function handleImageClick(cardData) {
-  console.log(cardData);
-  contentCardPreview.openModal(cardData);
+function handleImageClick(card) {
+  const name = card.name;
+  const link = card.link;
+  contentCardPreview.openModal(name, link);
 }
 
 // ---- Profile Modal open and close event listeners -------------------------------------
@@ -309,6 +318,27 @@ contentAddButton.addEventListener("click", () => {
 //     about: jobInput.value,
 //   })
 // );
+
+function handleProfilePhotoSubmit(photoLink) {
+  console.log(photoLink);
+  console.log(profileImage.src);
+  profilePhotoEdit.setSubmitAction(() => {
+    api
+      .updateProfilePhoto(photoLink)
+      .then(() => (profileImage.src = photoLink))
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  profilePhotoEdit.closeModal();
+}
+
+// api
+//   .updateProfilePhoto(
+//     "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+//   )
+//   .then((res) => console.log(res));
 
 function handleProfileFormSubmit(inputValues) {
   // profileName.textContent = nameInput.value;
@@ -395,6 +425,11 @@ profileFormValidator.enableValidation();
 const cardFormValidator = new FormValidator(config, contentFormElement);
 cardFormValidator.enableValidation();
 
+const profilePhotoEditValidator = new FormValidator(
+  config,
+  profilePhotoEditModal
+);
+profilePhotoEditValidator.enableValidation();
 // api.getInitialCards();
 // api.loadUserInfo();
 // api.editProfileInfo();
