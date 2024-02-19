@@ -140,12 +140,17 @@ api.getInitialCards().then((cards) => {
   cardSection.renderItems(cards);
 });
 
-const newUserInfo = new UserInfo("#profilename", "#profilejob");
+const newUserInfo = new UserInfo(
+  "#profilename",
+  "#profilejob",
+  "#profileImage"
+);
 
 api.loadUserInfo().then((userData) => {
   newUserInfo.setUserInfo({
     userName: userData.name,
     userDescription: userData.about,
+    userAvatar: userData.avatar,
   });
 });
 
