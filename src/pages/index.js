@@ -222,7 +222,7 @@ const deleteConfirmation = new PopupWithForm({
 });
 
 const contentCardPreview = new PopupWithImage({
-  popupSelector: ".js-preview-popup",
+  popupSelector: "#jsPopupSelector",
 });
 
 // const cardSection = new Section({ items: cardData }, renderCard, "#section");
@@ -266,7 +266,8 @@ function handleCardDeleteClick(card) {
 function handleImageClick(card) {
   const name = card.name;
   const link = card.link;
-  contentCardPreview.openModal(name, link);
+  // console.log(name, link);
+  contentCardPreview.openModal({ name, link });
 }
 
 // ---- Profile Modal open and close event listeners -------------------------------------
@@ -330,19 +331,33 @@ function handleProfilePhotoSubmit(inputValues) {
   // Change button text to "Saving..."
   submitButton.textContent = "Saving...";
   console.log(inputValues);
-  console.log(inputValues.avatar);
+  console.log(inputValues.profilePictureLink);
   api
-    .updateProfilePhoto(inputValues.avatar)
+    .updateProfilePhoto(inputValues)
     .then((submitButton.textContent = originalButtonText))
-    .then(() => (profilePhoto.src = inputValues.avatar))
+    .then(() => (profilePhoto.src = inputValues.profilePictureLink))
     .catch((err) => {
       console.log(err);
       submitButton.textContent = originalButtonText;
     });
   // });
-
   profilePhotoEdit.closeModal();
 }
+
+// function handleProfilePhotoSubmit(photoLink) {
+//   console.log(photoLink);
+//   console.log(profileImage.src);
+//   profilePhotoEdit.setSubmitAction(() => {
+//     api
+//       .updateProfilePhoto(photoLink)
+//       .then(() => (profileImage.src = photoLink))
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   });
+
+//   profilePhotoEdit.closeModal();
+// }
 // api
 //   .updateProfilePhoto(
 //     "https://images.pexels.com/photos/19986476/pexels-photo-19986476/free-photo-of-a-window-with-red-shutters-on-a-stone-wall.jpeg"
