@@ -69,9 +69,7 @@ export default class Card {
         // this._previewImageElement.src = this.link;
         // this._previewImageElement.alt = `Photo of ${this.name}`;
         // this._modalPreviewTitle.textContent = this.name;
-        const name = this._name;
-        const link = this._link;
-        this._handleImageClick({ name, link });
+        this._handleImageClick({ name: this._name, link: this._link });
       });
   }
 

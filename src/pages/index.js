@@ -269,10 +269,9 @@ function handleCardDeleteClick(card) {
 // }
 
 function handleImageClick(card) {
-  const name = card.name;
-  const link = card.link;
-  // console.log(name, link);
-  contentCardPreview.openModal({ name, link });
+  console.log(card);
+  console.log(contentCardPreview);
+  contentCardPreview.openModal(card);
 }
 
 // ---- Profile Modal open and close event listeners -------------------------------------
