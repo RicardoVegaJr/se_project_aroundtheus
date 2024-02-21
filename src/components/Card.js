@@ -60,7 +60,7 @@ export default class Card {
         //   this._deleteConfirmation.classList.remove("modal_opened");
         // }
 
-        this._handleDeleteCard();
+        // this._handleDeleteCard();
         this._handleCardDeleteClick(this);
       });
     this._cardElement

@@ -138,6 +138,41 @@ api.getInitialCards().then((cards) => {
     cardSection.addItem(cardElement.getView());
   }
   cardSection.renderItems(cards);
+
+  const newCardPopup = new PopupWithForm({
+    popupSelector: "#contentModal",
+    handleFormSubmit: handleCardFormSubmit,
+  });
+
+  contentAddButton.addEventListener("click", () => {
+    cardFormValidator.toggleButtonState();
+    newCardPopup.openModal();
+  });
+
+  function handleCardFormSubmit(cardValues) {
+    const name = cardValues.title;
+    const link = cardValues.url;
+    const submitButton = document.getElementById("modalContentSubmit");
+    const originalButtonText = submitButton.textContent;
+    // Change button text to "Saving..."
+    submitButton.textContent = "Saving...";
+    api
+      .addNewCard({
+        name,
+        link,
+      })
+      .then(() => cardSection.addItem(name, link))
+      .then(() => (submitButton.textContent = originalButtonText))
+      .catch((err) => {
+        console.log(err);
+        submitButton.textContent = originalButtonText;
+      });
+    // contentFormElement.reset();
+
+    // submitButton.classList.toggle("modal__button_disabled");
+    // submitButton.setAttribute("disabled", "true");
+    newCardPopup.closeModal();
+  }
 });
 
 const newUserInfo = new UserInfo(
@@ -207,10 +242,10 @@ profilePhoto.addEventListener("click", () => {
 
 //   });
 
-const newCardPopup = new PopupWithForm({
-  popupSelector: "#contentModal",
-  handleFormSubmit: handleCardFormSubmit,
-});
+// const newCardPopup = new PopupWithForm({
+//   popupSelector: "#contentModal",
+//   handleFormSubmit: handleCardFormSubmit,
+// });
 
 const profileCardPopup = new PopupWithForm({
   popupSelector: "#profileModal",
@@ -240,15 +275,24 @@ function handleCardDeleteClick(card) {
   // make sure to pass the card id from Card.js
   // right now you are passing name & link
   // this function gets called from `Card.js`
-  console.log(card);
+  const submitButton = document.querySelector("#confirmDeletion");
   deleteConfirmation.openModal();
+  let submitButtonPressed = false;
+  submitButton.addEventListener("click", () => {
+    submitButtonPressed = true;
+  });
   deleteConfirmation.setSubmitAction(() => {
-    api
-      .deleteCard(card.getId())
-      .then(() => card.remove())
-      .catch((err) => {
-        console.log(err);
-      });
+    if (submitButtonPressed) {
+      api
+        .deleteCard(card.getId())
+        .then(() => card.remove())
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("delete canceled");
+    }
+    submitButtonPressed = false;
     deleteConfirmation.closeModal();
     // api.deleteCard(cardId).then((res) => console.log(res));
     // this arrow function will get executed when the form is submitted
@@ -296,10 +340,10 @@ function handleImageClick(card) {
 
 // ---- //Content Modal open and close event listeners -----------------------------------
 
-contentAddButton.addEventListener("click", () => {
-  cardFormValidator.toggleButtonState();
-  newCardPopup.openModal();
-});
+// contentAddButton.addEventListener("click", () => {
+//   cardFormValidator.toggleButtonState();
+//   newCardPopup.openModal();
+// });
 
 // contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
 
@@ -385,29 +429,30 @@ function handleProfileFormSubmit(inputValues) {
   profileCardPopup.closeModal();
 }
 
-function handleCardFormSubmit(cardValues) {
-  const name = cardValues.title;
-  const link = cardValues.url;
-  const submitButton = document.getElementById("modalContentSubmit");
-  const originalButtonText = submitButton.textContent;
-  // Change button text to "Saving..."
-  submitButton.textContent = "Saving...";
-  api
-    .addNewCard({
-      name,
-      link,
-    })
-    .then(() => (submitButton.textContent = originalButtonText))
-    .catch((err) => {
-      console.log(err);
-      submitButton.textContent = originalButtonText;
-    });
-  // contentFormElement.reset();
+// function handleCardFormSubmit(cardValues) {
+//   const name = cardValues.title;
+//   const link = cardValues.url;
+//   const submitButton = document.getElementById("modalContentSubmit");
+//   const originalButtonText = submitButton.textContent;
+//   // Change button text to "Saving..."
+//   submitButton.textContent = "Saving...";
+//   api
+//     .addNewCard({
+//       name,
+//       link,
+//     })
+//     .then(() => addCardSection.addItem(name, link))
+//     .then(() => (submitButton.textContent = originalButtonText))
+//     .catch((err) => {
+//       console.log(err);
+//       submitButton.textContent = originalButtonText;
+//     });
+//   // contentFormElement.reset();
 
-  // submitButton.classList.toggle("modal__button_disabled");
-  // submitButton.setAttribute("disabled", "true");
-  newCardPopup.closeModal();
-}
+//   // submitButton.classList.toggle("modal__button_disabled");
+//   // submitButton.setAttribute("disabled", "true");
+//   newCardPopup.closeModal();
+// }
 
 function handleCardLike(card) {
   console.log(card.getId());
