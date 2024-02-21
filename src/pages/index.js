@@ -125,6 +125,7 @@ const api = new Api({
 
 api.getInitialCards().then((cards) => {
   const cardSection = new Section({ items: cards }, renderCard, "#section");
+
   function renderCard(cards) {
     const cardElement = new Card(
       cards,
@@ -134,46 +135,62 @@ api.getInitialCards().then((cards) => {
       handleCardLike,
       handleCardLikeRemove
     );
-    // cardListEl.prepend(cardElement.getView());
     cardSection.addItem(cardElement.getView());
   }
-  cardSection.renderItems(cards);
 
-  const newCardPopup = new PopupWithForm({
-    popupSelector: "#contentModal",
-    handleFormSubmit: handleCardFormSubmit,
-  });
-
-  contentAddButton.addEventListener("click", () => {
-    cardFormValidator.toggleButtonState();
-    newCardPopup.openModal();
-  });
-
-  function handleCardFormSubmit(cardValues) {
-    const name = cardValues.title;
-    const link = cardValues.url;
-    const submitButton = document.getElementById("modalContentSubmit");
-    const originalButtonText = submitButton.textContent;
-    // Change button text to "Saving..."
-    submitButton.textContent = "Saving...";
-    api
-      .addNewCard({
-        name,
-        link,
-      })
-      .then(() => cardSection.addItem(name, link))
-      .then(() => (submitButton.textContent = originalButtonText))
-      .catch((err) => {
-        console.log(err);
-        submitButton.textContent = originalButtonText;
-      });
-    // contentFormElement.reset();
-
-    // submitButton.classList.toggle("modal__button_disabled");
-    // submitButton.setAttribute("disabled", "true");
-    newCardPopup.closeModal();
-  }
+  cardSection.renderItems();
 });
+
+const newCardPopup = new PopupWithForm({
+  popupSelector: "#contentModal",
+  handleFormSubmit: handleCardFormSubmit,
+});
+
+contentAddButton.addEventListener("click", () => {
+  cardFormValidator.toggleButtonState();
+  newCardPopup.openModal();
+});
+
+function handleCardFormSubmit(cardValues) {
+  const name = cardValues.title;
+  const link = cardValues.url;
+  const submitButton = document.getElementById("modalContentSubmit");
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
+
+  api
+    .addNewCard({
+      name,
+      link,
+    })
+    .then((newCard) => {
+      const newCardSection = new Section(
+        { newCard },
+        renderNewCard,
+        "#section"
+      );
+      newCardSection.addItem(newCard);
+      submitButton.textContent = originalButtonText;
+      newCardPopup.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+      submitButton.textContent = originalButtonText;
+    });
+}
+
+function renderNewCard(newCard) {
+  const cardNewElement = new Card(
+    newCard,
+    "#card-template",
+    handleImageClick,
+    handleCardDeleteClick,
+    handleCardLike,
+    handleCardLikeRemove
+  );
+  return cardNewElement.getView();
+}
 
 const newUserInfo = new UserInfo(
   "#profilename",
