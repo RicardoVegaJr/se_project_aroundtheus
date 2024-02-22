@@ -123,8 +123,10 @@ const api = new Api({
   authToken: "23172f33-55e2-4e0e-a695-0bae3ab40106",
 });
 
+let cardSection;
+
 api.getInitialCards().then((cards) => {
-  const cardSection = new Section({ items: cards }, renderCard, "#section");
+  cardSection = new Section({ items: cards }, renderCard, "#section");
 
   function renderCard(cards) {
     const cardElement = new Card(
@@ -135,6 +137,7 @@ api.getInitialCards().then((cards) => {
       handleCardLike,
       handleCardLikeRemove
     );
+    console.log(cards);
     cardSection.addItem(cardElement.getView());
   }
 
@@ -164,13 +167,17 @@ function handleCardFormSubmit(cardValues) {
       name,
       link,
     })
-    .then((newCard) => {
-      const newCardSection = new Section(
-        { newCard },
-        renderNewCard,
-        "#section"
+    .then(() => {
+      const cardNewElement = new Card(
+        { name, link },
+        "#card-template",
+        handleImageClick,
+        handleCardDeleteClick,
+        handleCardLike,
+        handleCardLikeRemove
       );
-      newCardSection.addItem(newCard);
+      cardSection.addItem(cardNewElement.getView());
+
       submitButton.textContent = originalButtonText;
       newCardPopup.closeModal();
     })
@@ -178,18 +185,6 @@ function handleCardFormSubmit(cardValues) {
       console.log(err);
       submitButton.textContent = originalButtonText;
     });
-}
-
-function renderNewCard(newCard) {
-  const cardNewElement = new Card(
-    newCard,
-    "#card-template",
-    handleImageClick,
-    handleCardDeleteClick,
-    handleCardLike,
-    handleCardLikeRemove
-  );
-  return cardNewElement.getView();
 }
 
 const newUserInfo = new UserInfo(
