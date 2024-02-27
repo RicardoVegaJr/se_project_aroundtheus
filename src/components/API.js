@@ -58,7 +58,8 @@ export default class Api {
         console.log(err);
       });
   }
-  addNewCard({ name, link }) {
+  addNewCard({ title, url }) {
+    console.log(title, url);
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
@@ -66,10 +67,19 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name,
-        link,
+        name: title,
+        link: url,
       }),
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   deleteCard(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}`, {

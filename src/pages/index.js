@@ -155,29 +155,23 @@ contentAddButton.addEventListener("click", () => {
 });
 
 function handleCardFormSubmit(cardValues) {
-  const name = cardValues.title;
-  const link = cardValues.url;
   const submitButton = document.getElementById("modalContentSubmit");
   const originalButtonText = submitButton.textContent;
   // Change button text to "Saving..."
   submitButton.textContent = "Saving...";
 
   api
-    .addNewCard({
-      name,
-      link,
-    })
-    .then(() => {
-      const cardNewElement = new Card(
-        { name, link },
+    .addNewCard(cardValues)
+    .then((cardData) => {
+      const newCard = new Card(
+        cardData,
         "#card-template",
         handleImageClick,
         handleCardDeleteClick,
         handleCardLike,
         handleCardLikeRemove
       );
-      cardSection.addItem(cardNewElement.getView());
-
+      cardSection.prependItems(newCard.getView());
       submitButton.textContent = originalButtonText;
       newCardPopup.closeModal();
     })
