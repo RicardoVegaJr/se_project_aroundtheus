@@ -14,29 +14,10 @@ class FormValidator {
     errorMessageEl.classList.add(this._errorClass);
   }
 
-  // _toggleButtonState() {
-  //   let foundInvalid = false;
-
-  //   this._inputEls.forEach((inputEl) => {
-  //     if (!inputEl.validity.valid) {
-  //       foundInvalid = true;
-  //     }
-  //   });
-
-  //   if (foundInvalid) {
-  //     this._submitButton.classList.add(inactiveButtonClass);
-  //     this._submitButton.disabled = true;
-  //   } else {
-  //     this._submitButton.classList.remove(inactiveButtonClass);
-  //     this._submitButton.disabled = false;
-  //   }
-  // }
   _foundInvalid() {
     return !this._inputEls.every((inputEl) => inputEl.validity.valid);
   }
   toggleButtonState() {
-    // let foundInvalid = false;
-
     if (this._foundInvalid()) {
       this._disableButton();
     } else {
@@ -56,13 +37,6 @@ class FormValidator {
     this._hideInputError(inputEl);
   }
 
-  // _checkInputValidity(formEl, inputEl, options) {
-  //   if (!inputEl.validity.valid) {
-  //     this._showInputError(formEl, inputEl, options);
-  //   } else {
-  //     this._hideInputError(formEl, inputEl, options);
-  //   }
-  // }
   _hideInputError(inputEl) {
     const errorMessageEl = this._formEl.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.remove(this._inputErrorClass);
@@ -89,29 +63,5 @@ class FormValidator {
     this._setEventListeners(this._formEl);
   }
 }
-
-// const editFormValidator = new FormValidator();
-// editFormValidator.enableValidation();
-
-// const profileFormValidator = new FormValidator(config, profileEditModal);
-// profileFormValidator.enableValidation();
-
-// const cardFormValidator = new FormValidator(config, contentFormElement);
-// cardFormValidator.enableValidation();
-
-// const config = {
-//   //   formSelector: ".popup__form",
-//   //   inputSelector: ".popup__input",
-//   //   submitButtonSelector: ".popup__button",
-//   //   inactiveButtonClass: "popup__button_disabled",
-//   //   inputErrorClass: "popup__input_type_error",
-//   //   errorClass: "popup__error_visible",
-//   formSelector: ".modal__form",
-//   inputSelector: ".modal__edit",
-//   submitButtonSelector: ".modal__button",
-//   inactiveButtonClass: "modal__button_disabled",
-//   inputErrorClass: ".modal__error",
-//   errorClass: ".modal__error_visible",
-// };
 
 export default FormValidator;

@@ -12,7 +12,4 @@ export default class PopupWithImage extends Popup {
     this._modalImageText.textContent = card.name;
     super.openModal();
   }
-  closeModal() {
-    super.closeModal();
-  }
 }
