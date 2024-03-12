@@ -28,7 +28,6 @@ export default class Card {
       .addEventListener("click", () => {
         if (this._isLiked) {
           this._handleCardLikeRemove(this);
-          this._isLiked = !this._isLiked;
         } else {
           this._handleCardLike(this);
         }
@@ -59,6 +58,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card-heart")
       .classList.toggle("card-heart_active");
+    this._isLiked = !this._isLiked;
   }
 
   _loadLikes() {

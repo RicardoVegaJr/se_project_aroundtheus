@@ -82,11 +82,12 @@ function handleCardFormSubmit(cardValues) {
         handleCardLikeRemove
       );
       cardSection.prependItems(newCard.getView());
-      submitButton.textContent = originalButtonText;
       newCardPopup.closeModal();
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
       submitButton.textContent = originalButtonText;
     });
 }
@@ -128,15 +129,14 @@ editProfileButton.addEventListener("click", () => {
         name: name,
         about: about,
       })
-      .then((submitButton.textContent = originalButtonText))
       .then((res) => {
         newUserInfo.setUserInfo(res);
+        profileCardPopup.closeModal();
       })
       .catch((err) => {
         console.log(err);
-        submitButton.textContent = originalButtonText;
-      });
-    profileCardPopup.closeModal();
+      })
+      .finally((submitButton.textContent = originalButtonText));
   });
 });
 
@@ -173,7 +173,10 @@ function handleCardDeleteClick(card) {
     if (submitButtonPressed) {
       api
         .deleteCard(card.getId())
-        .then(() => card.remove())
+        .then(() => {
+          card.remove();
+          deleteConfirmation.closeModal();
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -181,7 +184,6 @@ function handleCardDeleteClick(card) {
       console.log("delete canceled");
     }
     submitButtonPressed = false;
-    deleteConfirmation.closeModal();
   });
 }
 
@@ -197,13 +199,14 @@ function handleProfilePhotoSubmit(inputValues) {
 
   api
     .updateProfilePhoto(inputValues)
-    .then((submitButton.textContent = originalButtonText))
-    .then((res) => newUserInfo.setUserInfo(res))
+    .then((res) => {
+      newUserInfo.setUserInfo(res);
+      profilePhotoEdit.closeModal();
+    })
     .catch((err) => {
       console.log(err);
-      submitButton.textContent = originalButtonText;
-    });
-  profilePhotoEdit.closeModal();
+    })
+    .finally((submitButton.textContent = originalButtonText));
 }
 
 function handleProfileFormSubmit(inputValues) {
@@ -214,7 +217,9 @@ function handleProfileFormSubmit(inputValues) {
 function handleCardLike(card) {
   api
     .addCardLike(card.getId())
-    .then(() => card.handleLikeIcon())
+    .then(() => {
+      card.handleLikeIcon();
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -223,7 +228,9 @@ function handleCardLike(card) {
 function handleCardLikeRemove(card) {
   api
     .removeCardLike(card.getId())
-    .then(() => card.handleLikeIcon())
+    .then(() => {
+      card.handleLikeIcon();
+    })
     .catch((err) => {
       console.log(err);
     });
