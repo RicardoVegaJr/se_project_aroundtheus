@@ -6,6 +6,7 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import "../pages/index.css";
+import { config } from "../utils/constants.js";
 
 const profileEditModal = document.querySelector("#profileModal");
 const profilePhotoEditModal = document.querySelector("#profilePhotoModal");
@@ -116,29 +117,37 @@ editProfileButton.addEventListener("click", () => {
   jobInput.value = profileJob.textContent;
   cardFormValidator.toggleButtonState();
   profileCardPopup.openModal();
-  profileCardPopup.setSubmitAction(() => {
-    const name = nameInput.value;
-    const about = jobInput.value;
-    const submitButton = document.getElementById("modalProfileSubmit");
-
-    const originalButtonText = submitButton.textContent;
-    // Change button text to "Saving..."
-    submitButton.textContent = "Saving...";
-    api
-      .editProfileInfo({
-        name: name,
-        about: about,
-      })
-      .then((res) => {
-        newUserInfo.setUserInfo(res);
-        profileCardPopup.closeModal();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally((submitButton.textContent = originalButtonText));
-  });
+  const name = nameInput.value;
+  const about = jobInput.value;
+  // modalProfileSubmit.addEventListener("click", submitProfileForm(name, about));
 });
+
+function submitProfileForm(name, about) {
+  // const name = nameInput.value;
+  // const about = jobInput.value;
+  const submitButton = document.getElementById("modalProfileSubmit");
+
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
+  api
+    .editProfileInfo({
+      name: name,
+      about: about,
+    })
+    .then((res) => {
+      newUserInfo.setUserInfo(res);
+      profileCardPopup.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      submitButton.textContent = originalButtonText;
+    });
+}
+
+modalProfileSubmit.addEventListener("click", submitProfileForm);
 
 profilePhoto.addEventListener("click", () => {
   profilePhotoEdit.openModal();
@@ -235,15 +244,6 @@ function handleCardLikeRemove(card) {
       console.log(err);
     });
 }
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__edit",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: ".modal__error",
-  errorClass: ".modal__error_visible",
-};
 
 const profileFormValidator = new FormValidator(config, profileEditModal);
 profileFormValidator.enableValidation();
