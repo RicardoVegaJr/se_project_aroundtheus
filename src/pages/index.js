@@ -112,42 +112,38 @@ api
     console.log(err);
   });
 
+// editProfileButton.addEventListener("click", () => {
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileJob.textContent;
+//   cardFormValidator.toggleButtonState();
+//   profileCardPopup.openModal();
+//   profileCardPopup.setSubmitAction(() => {
+//     const name = nameInput.value;
+//     const about = jobInput.value;
+//     const submitButton = document.getElementById("modalProfileSubmit");
+
+//     const originalButtonText = submitButton.textContent;
+//     // Change button text to "Saving..."
+//     submitButton.textContent = "Saving...";
+//     api
+//       .editProfileInfo({
+//         name: name,
+//         about: about,
+//       })
+//       .then((res) => {
+//         newUserInfo.setUserInfo(res);
+//         profileCardPopup.closeModal();
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       })
+//       .finally((submitButton.textContent = originalButtonText));
+//   });
+// });
+
 editProfileButton.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  cardFormValidator.toggleButtonState();
   profileCardPopup.openModal();
-  const name = nameInput.value;
-  const about = jobInput.value;
-  // modalProfileSubmit.addEventListener("click", submitProfileForm(name, about));
 });
-
-function submitProfileForm(name, about) {
-  // const name = nameInput.value;
-  // const about = jobInput.value;
-  const submitButton = document.getElementById("modalProfileSubmit");
-
-  const originalButtonText = submitButton.textContent;
-  // Change button text to "Saving..."
-  submitButton.textContent = "Saving...";
-  api
-    .editProfileInfo({
-      name: name,
-      about: about,
-    })
-    .then((res) => {
-      newUserInfo.setUserInfo(res);
-      profileCardPopup.closeModal();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      submitButton.textContent = originalButtonText;
-    });
-}
-
-modalProfileSubmit.addEventListener("click", submitProfileForm);
 
 profilePhoto.addEventListener("click", () => {
   profilePhotoEdit.openModal();
@@ -217,9 +213,36 @@ function handleProfilePhotoSubmit(inputValues) {
     })
     .finally((submitButton.textContent = originalButtonText));
 }
-
+//test function
 function handleProfileFormSubmit(inputValues) {
+  console.log(nameInput.value);
   newUserInfo.setUserInfo(inputValues);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  cardFormValidator.toggleButtonState();
+  profileCardPopup.openModal();
+
+  const name = inputValues.name;
+  const about = inputValues.about;
+  const submitButton = document.getElementById("modalProfileSubmit");
+
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
+  api
+    .editProfileInfo({
+      name: name,
+      about: about,
+    })
+    .then((res) => {
+      newUserInfo.setUserInfo(res);
+      profileCardPopup.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally((submitButton.textContent = originalButtonText));
+
   profileCardPopup.closeModal();
 }
 
