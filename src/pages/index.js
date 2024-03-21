@@ -31,7 +31,7 @@ const api = new Api({
 });
 
 function createCard(data) {
-  return new Card(
+  const card = new Card(
     data,
     "#card-template",
     handleImageClick,
@@ -39,6 +39,7 @@ function createCard(data) {
     handleCardLike,
     handleCardLikeRemove
   );
+  return card.getView();
 }
 
 let cardSection;
@@ -50,7 +51,7 @@ api
 
     function renderCard(cards) {
       const cardElement = createCard(cards);
-      cardSection.addItem(cardElement.getView());
+      cardSection.addItem(cardElement);
     }
 
     cardSection.renderItems();
@@ -79,7 +80,7 @@ function handleCardFormSubmit(cardValues) {
     .addNewCard(cardValues)
     .then((cardData) => {
       const newCard = createCard(cardData);
-      cardSection.prependItems(newCard.getView());
+      cardSection.prependItems(newCard);
       newCardPopup.closeModal();
     })
     .catch((err) => {
@@ -110,8 +111,9 @@ api
   });
 
 editProfileButton.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  const data = newUserInfo.getUserInfo();
+  nameInput.value = data.name;
+  jobInput.value = data.job;
   profileCardPopup.openModal();
 });
 
@@ -168,10 +170,10 @@ function handleImageClick(card) {
 }
 
 function handleProfilePhotoSubmit(inputValues) {
-  const submitButton = document.getElementById("modalPhotoSubmit");
-  const originalButtonText = submitButton.textContent;
+  const submitButtonm = document.getElementById("modalPhotoSubmit");
+  const originalButtonText = submitButtonm.textContent;
   // Change button text to "Saving..."
-  submitButton.textContent = "Saving...";
+  submitButtonm.textContent = "Saving...";
 
   api
     .updateProfilePhoto(inputValues)
@@ -182,17 +184,17 @@ function handleProfilePhotoSubmit(inputValues) {
     .catch((err) => {
       console.log(err);
     })
-    .finally((submitButton.textContent = originalButtonText));
+    .finally(() => {
+      submitButtonm.textContent = originalButtonText;
+    });
 }
 
 function handleProfileFormSubmit(inputValues) {
-  console.log(nameInput.value);
   profileFormValidator.toggleButtonState();
   profileCardPopup.openModal();
   const name = inputValues.name;
   const about = inputValues.about;
   const submitButton = document.getElementById("modalProfileSubmit");
-
   const originalButtonText = submitButton.textContent;
   // Change button text to "Saving..."
   submitButton.textContent = "Saving...";
@@ -208,9 +210,9 @@ function handleProfileFormSubmit(inputValues) {
     .catch((err) => {
       console.log(err);
     })
-    .finally((submitButton.textContent = originalButtonText));
-
-  profileCardPopup.closeModal();
+    .finally(() => {
+      submitButton.textContent = originalButtonText;
+    });
 }
 
 function handleCardLike(card) {
