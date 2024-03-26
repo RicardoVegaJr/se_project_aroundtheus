@@ -100,21 +100,15 @@ const newUserInfo = new UserInfo(
 api
   .loadUserInfo()
   .then((userData) => {
-    newUserInfo.setUserInfo({
-      name: userData.name,
-      about: userData.about,
-      avatar: userData.avatar,
-    });
+    newUserInfo.setUserInfo(userData);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch(console.error);
 
 editProfileButton.addEventListener("click", () => {
   const data = newUserInfo.getUserInfo();
   nameInput.value = data.name;
   jobInput.value = data.job;
-  profileCardPopup.openModal();
+  profilePopup.openModal();
 });
 
 profilePhoto.addEventListener("click", () => {
@@ -122,7 +116,7 @@ profilePhoto.addEventListener("click", () => {
   profilePhotoEdit.openModal();
 });
 
-const profileCardPopup = new PopupWithForm({
+const profilePopup = new PopupWithForm({
   popupSelector: "#profileModal",
   handleFormSubmit: handleProfileFormSubmit,
 });
@@ -144,9 +138,9 @@ function handleCardDeleteClick(card) {
   const submitButton = document.querySelector("#confirmDeletion");
   deleteConfirmation.openModal();
   let submitButtonPressed = false;
-  submitButton.addEventListener("click", () => {
-    submitButtonPressed = true;
-  });
+  // submitButton.addEventListener("click", () => {
+  submitButtonPressed = true;
+  // });
   deleteConfirmation.setSubmitAction(() => {
     if (submitButtonPressed) {
       api
@@ -191,7 +185,7 @@ function handleProfilePhotoSubmit(inputValues) {
 
 function handleProfileFormSubmit(inputValues) {
   profileFormValidator.toggleButtonState();
-  profileCardPopup.openModal();
+  profilePopup.openModal();
   const name = inputValues.name;
   const about = inputValues.about;
   const submitButton = document.getElementById("modalProfileSubmit");
@@ -205,7 +199,7 @@ function handleProfileFormSubmit(inputValues) {
     })
     .then((res) => {
       newUserInfo.setUserInfo(res);
-      profileCardPopup.closeModal();
+      profilePopup.closeModal();
     })
     .catch((err) => {
       console.log(err);
