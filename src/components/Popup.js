@@ -21,7 +21,6 @@ export default class Popup {
     //esc
     const key = event.key;
     if (key === "Escape") {
-      console.log("esc pressed");
       this.closeModal();
     }
   };
