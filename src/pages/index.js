@@ -16,8 +16,6 @@ const profileFormElement = document.querySelector("#modalprofileform");
 const contentFormElement = document.querySelector("#modalcontentform");
 const nameInput = profileFormElement.querySelector("#name");
 const jobInput = profileFormElement.querySelector("#title");
-const profileName = document.querySelector("#profilename");
-const profileJob = document.querySelector("#profilejob");
 const editProfileButton = document.querySelector(
   "#profile__edit-button-action"
 );
@@ -135,27 +133,18 @@ const contentCardPreview = new PopupWithImage({
 });
 
 function handleCardDeleteClick(card) {
-  const submitButton = document.querySelector("#confirmDeletion");
   deleteConfirmation.openModal();
-  let submitButtonPressed = false;
-  // submitButton.addEventListener("click", () => {
-  submitButtonPressed = true;
-  // });
+
   deleteConfirmation.setSubmitAction(() => {
-    if (submitButtonPressed) {
-      api
-        .deleteCard(card.getId())
-        .then(() => {
-          card.remove();
-          deleteConfirmation.closeModal();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      console.log("delete canceled");
-    }
-    submitButtonPressed = false;
+    api
+      .deleteCard(card.getId())
+      .then(() => {
+        card.remove();
+        deleteConfirmation.closeModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 }
 
