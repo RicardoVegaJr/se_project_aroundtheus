@@ -1,248 +1,233 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-// import { openModal, closeModal } from "../utils/utils.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import Section from "../components/section.js";
+import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-
+import Api from "../components/API.js";
 import "../pages/index.css";
-
-// setTimeout(() => {
-//   profileCardPopup.closeModal();
-// }, 3000);
-
-// const initialCards = [
-//   {
-//     name: "Yosemite Valley",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-//   },
-//   {
-//     name: "Lake Louise",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-//   },
-//   {
-//     name: "Bald Mountains",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-//   },
-//   {
-//     name: "Latemar",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-//   },
-//   {
-//     name: "Vanoise National Park",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-//   },
-//   {
-//     name: "Lago di Braies",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-//   },
-// ];
-
-const cardData = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-// const card = new Card(cardData, "#card-template");
-// card.getView();
+import { config } from "../utils/constants.js";
 
 const profileEditModal = document.querySelector("#profileModal");
-const profileEditModalClose = document.querySelector("#modalProfileClose");
-const contentModal = document.querySelector("#contentModal");
+const profilePhotoEditModal = document.querySelector("#profilePhotoModal");
+const profilePhoto = document.querySelector("#profileImage");
 const contentAddButton = document.querySelector("#content__add-button-action");
-const contentAddModalClose = document.querySelector("#modalContentClose");
-
 const profileFormElement = document.querySelector("#modalprofileform");
 const contentFormElement = document.querySelector("#modalcontentform");
 const nameInput = profileFormElement.querySelector("#name");
 const jobInput = profileFormElement.querySelector("#title");
-const profileName = document.querySelector("#profilename");
-const profileJob = document.querySelector("#profilejob");
-const modalSubmit = document.querySelector("#modalsubmit");
-const cardListEl = document.querySelector(".cards");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-const cardTitleInput = contentFormElement.querySelector(".modal__edit_title");
-const cardUrlInput = contentFormElement.querySelector(".modal__edit_url");
-// const previewImageModalWindow = document.querySelector(".js-preview-popup");
-// const previewImageElement = document.querySelector(".modal__preview-image");
-const modalPreviewCloseButton = document.querySelector("#modalPreviewClose");
-// const modalPreviewTitle = document.querySelector(".modal__preview-title");
+const editProfileButton = document.querySelector(
+  "#profile__edit-button-action"
+);
 
-// cardData.forEach((card) => {
-//   renderCard(card);
-// });
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "23172f33-55e2-4e0e-a695-0bae3ab40106",
+    "Content-Type": "application/json",
+  },
+});
 
-// modalPreviewCloseButton.addEventListener("click", () => {
-//   closeModal(previewImageModalWindow);
-// });
+function createCard(data) {
+  const card = new Card(
+    data,
+    "#card-template",
+    handleImageClick,
+    handleCardDeleteClick,
+    handleCardLike,
+    handleCardLikeRemove
+  );
+  return card.getView();
+}
 
-// function openModal(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keyup", handleEscButton);
-//   document.addEventListener("click", handleOverlayClose);
-// }
+let cardSection;
 
-// function closeModal(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keyup", handleEscButton);
-//   document.removeEventListener("click", handleOverlayClose);
-// }
+api
+  .getInitialCards()
+  .then((cards) => {
+    cardSection = new Section({ items: cards }, renderCard, "#section");
+
+    function renderCard(cards) {
+      const cardElement = createCard(cards);
+      cardSection.addItem(cardElement);
+    }
+
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#contentModal",
   handleFormSubmit: handleCardFormSubmit,
 });
 
-const profileCardPopup = new PopupWithForm({
-  popupSelector: "#profileModal",
-  handleFormSubmit: handleProfileFormSubmit,
-});
-
-const contentCardPreview = new PopupWithImage({
-  popupSelector: ".js-preview-popup",
-});
-
-const cardSection = new Section({ items: cardData }, renderCard, "#section");
-cardSection.renderItems(cardData);
-
-const newUserInfo = new UserInfo("#profilename", "#profilejob");
-
-function renderCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", handleImageClick);
-  // cardListEl.prepend(cardElement.getView());
-  cardSection.addItem(cardElement.getView());
-}
-
-function handleImageClick(cardData) {
-  console.log(cardData);
-  contentCardPreview.openModal(cardData);
-}
-
-// ---- Profile Modal open and close event listeners -------------------------------------
-
-const editProfileButton = document.querySelector(
-  "#profile__edit-button-action"
-);
-
-editProfileButton.addEventListener("click", () => {
-  // nameInput.value = profileName.textContent;
-  // jobInput.value = profileJob.textContent;
-  const data = newUserInfo.getUserInfo();
-  nameInput.value = data.name;
-  jobInput.value = data.job;
-  cardFormValidator.toggleButtonState();
-  profileCardPopup.openModal();
-});
-
-// profileEditModalClose.addEventListener("click", () =>
-//   profileCardPopup.closeModal()
-// );
-
-// modalPreviewCloseButton.addEventListener("click", () =>
-//   contentCardPreview.closeModal()
-// );
-
-// ---- //Content Modal open and close event listeners -----------------------------------
-
 contentAddButton.addEventListener("click", () => {
   cardFormValidator.toggleButtonState();
   newCardPopup.openModal();
 });
-// contentAddModalClose.addEventListener("click", () => newCardPopup.closeModal());
-
-// ---- //Esc Button Modal Close ---------------------------------------------------------
-
-// function handleEscButton(event) {
-//   const key = event.key;
-//   if (key === "Escape") {
-//     const openedPopup = document.querySelector(".modal_opened");
-//     closeModal(openedPopup);
-//   }
-// }
-// //Overlay Modal Close
-// function handleOverlayClose(evt) {
-//   if (evt.target.classList.contains("modal_opened")) {
-//     closeModal(evt.target);
-//   }
-// }
-
-// const submitButtonEvent = document.querySelector(".modal__form");
-
-// submitButtonEvent.addEventListener("submit", () =>
-//   newUserInfo.setUserInfo({
-//     name: nameInput.value,
-//     about: jobInput.value,
-//   })
-// );
-
-function handleProfileFormSubmit(inputValues) {
-  // profileName.textContent = nameInput.value;
-  // profileJob.textContent = jobInput.value;
-  // newUserInfo.setUserInfo({
-  //   name: inputValues.name,
-  //   about: inputValues.job,
-  // });
-  newUserInfo.setUserInfo(inputValues);
-  profileCardPopup.closeModal();
-}
 
 function handleCardFormSubmit(cardValues) {
-  const name = cardValues.title;
-  const link = cardValues.url;
-  renderCard({ name, link }, cardListEl);
-  // contentFormElement.reset();
-  // const submitButton = document.querySelector("#modalContentSubmit");
-  // submitButton.classList.toggle("modal__button_disabled");
-  // submitButton.setAttribute("disabled", "true");
-  newCardPopup.closeModal();
+  const submitButton = document.getElementById("modalContentSubmit");
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
+
+  api
+    .addNewCard(cardValues)
+    .then((cardData) => {
+      const newCard = createCard(cardData);
+      cardSection.prependItems(newCard);
+      newCardPopup.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      submitButton.textContent = originalButtonText;
+    });
 }
 
-const config = {
-  //   formSelector: ".popup__form",
-  //   inputSelector: ".popup__input",
-  //   submitButtonSelector: ".popup__button",
-  //   inactiveButtonClass: "popup__button_disabled",
-  //   inputErrorClass: "popup__input_type_error",
-  //   errorClass: "popup__error_visible",
-  formSelector: ".modal__form",
-  inputSelector: ".modal__edit",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: ".modal__error",
-  errorClass: ".modal__error_visible",
-};
+const newUserInfo = new UserInfo(
+  "#profilename",
+  "#profilejob",
+  "#profileImage"
+);
 
-// profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-// contentFormElement.addEventListener("submit", handleCardFormSubmit);
+api
+  .loadUserInfo()
+  .then((userData) => {
+    newUserInfo.setUserInfo(userData);
+  })
+  .catch(console.error);
 
-// initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+editProfileButton.addEventListener("click", () => {
+  const data = newUserInfo.getUserInfo();
+  nameInput.value = data.name;
+  jobInput.value = data.job;
+  profilePopup.openModal();
+});
+
+profilePhoto.addEventListener("click", () => {
+  profilePhotoEditValidator.toggleButtonState();
+  profilePhotoEdit.openModal();
+});
+
+const profilePopup = new PopupWithForm({
+  popupSelector: "#profileModal",
+  handleFormSubmit: handleProfileFormSubmit,
+});
+
+const profilePhotoEdit = new PopupWithForm({
+  popupSelector: "#profilePhotoModal",
+  handleFormSubmit: handleProfilePhotoSubmit,
+});
+
+const deleteConfirmation = new PopupWithForm({
+  popupSelector: "#deleteContent",
+});
+
+const contentCardPreview = new PopupWithImage({
+  popupSelector: "#jsPopupSelector",
+});
+
+function handleCardDeleteClick(card) {
+  deleteConfirmation.openModal();
+
+  deleteConfirmation.setSubmitAction(() => {
+    api
+      .deleteCard(card.getId())
+      .then(() => {
+        card.remove();
+        deleteConfirmation.closeModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
+function handleImageClick(card) {
+  contentCardPreview.openModal(card);
+}
+
+function handleProfilePhotoSubmit(inputValues) {
+  const submitButtonm = document.getElementById("modalPhotoSubmit");
+  const originalButtonText = submitButtonm.textContent;
+  // Change button text to "Saving..."
+  submitButtonm.textContent = "Saving...";
+
+  api
+    .updateProfilePhoto(inputValues)
+    .then((res) => {
+      newUserInfo.setUserInfo(res);
+      profilePhotoEdit.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      submitButtonm.textContent = originalButtonText;
+    });
+}
+
+function handleProfileFormSubmit(inputValues) {
+  profileFormValidator.toggleButtonState();
+  profilePopup.openModal();
+  const name = inputValues.name;
+  const about = inputValues.about;
+  const submitButton = document.getElementById("modalProfileSubmit");
+  const originalButtonText = submitButton.textContent;
+  // Change button text to "Saving..."
+  submitButton.textContent = "Saving...";
+  api
+    .editProfileInfo({
+      name: name,
+      about: about,
+    })
+    .then((res) => {
+      newUserInfo.setUserInfo(res);
+      profilePopup.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      submitButton.textContent = originalButtonText;
+    });
+}
+
+function handleCardLike(card) {
+  api
+    .addCardLike(card.getId())
+    .then(() => {
+      card.handleLikeIcon();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function handleCardLikeRemove(card) {
+  api
+    .removeCardLike(card.getId())
+    .then(() => {
+      card.handleLikeIcon();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 const profileFormValidator = new FormValidator(config, profileEditModal);
 profileFormValidator.enableValidation();
 
 const cardFormValidator = new FormValidator(config, contentFormElement);
 cardFormValidator.enableValidation();
+
+const profilePhotoEditValidator = new FormValidator(
+  config,
+  profilePhotoEditModal
+);
+profilePhotoEditValidator.enableValidation();

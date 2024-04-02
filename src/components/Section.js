@@ -12,6 +12,9 @@ export default class Section {
   }
   addItem(items) {
     //takes DOM El and adds it to the container. This method should be called when adding an individual card to the dom
+    this._container.appendChild(items);
+  }
+  prependItems(items) {
     this._container.prepend(items);
   }
 }
