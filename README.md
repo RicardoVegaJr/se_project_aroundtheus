@@ -1,32 +1,42 @@
-# Project 3: Around The U.S.
+# ✈️ Around The U.S.
 
-### Overview: Project Features
+## 🌟 Overview
+**Around The U.S.** is a modern photo application to hold users’ traveled location images. It is fully responsive and designed to display all elements correctly across popular screen sizes. The responsive design is achieved through a combination of **CSS Grid**, **Flexbox**, and **Media Queries**, ensuring a seamless experience on desktop, tablet, and mobile devices.  
 
-- HTML
-- CSS
-- Flex-Box
-- Grid
-- Media Queries
-- Figma
+### ⚙️ Project Features
+- HTML 📝  
+- CSS 🎨  
+- Flexbox ↔️  
+- Grid 🗂️  
+- Media Queries 📱  
+- Figma 🎛️ (for design and prototyping)  
 
-**Intro**
+---
 
-This project is made so all the elements are displayed correctly on popular screen sizes. This responsive design is made possible by combining grid, flex-box and media queries.
+## 🖥️ Intro
+The main goal of this project is to create a **responsive layout** that adapts gracefully to different screen sizes, while keeping the design visually appealing and user-friendly.  
 
-**Links**
+---
 
-- [Link to webpage](https://ricardovegajr.github.io/se_project_aroundtheus/)
+## 🔗 Links
+- **🌐 Live Webpage:** [Around The U.S. Live Site](https://ricardovegajr.github.io/se_project_aroundtheus/)  
+- **🎨 Figma Design:** [Project Figma Link](#)  
 
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+*(Replace `#` with your actual Figma project link)*
 
-**Images**
+---
 
-Photos used in project optimized on [here](https://tinypng.com/), to speed up webpage load times.
+## 🖼️ Images
+All images used in this project are **optimized** to reduce loading times and improve performance.  
 
-**Webpage on different sizes**
+### 📱 Responsive Layout Examples
+- **💻 1280px (Desktop):** *alt text describing image*  
+- **📐 1050px (Tablet):** *alt text describing image*  
+- **📱 320px (Mobile):** *alt text describing image*  
 
-1280px ![alt text](./images/demo/1280.jpg)
-1050px ![alt text](./images/demo/1050.jpg)
-320px ![alt text](./images/demo/320.jpg)
+*(Replace alt text placeholders with meaningful descriptions for accessibility.)*
 
-Thank you !
+---
+
+## 🙏 Thank You!
+Thank you for visiting the project! Feedback and suggestions are always welcome.
