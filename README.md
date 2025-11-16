@@ -32,7 +32,7 @@ The project was built using **HTML, CSS, Flexbox, Grid, Media Queries**, and **F
 ## 🖼️ Screenshot
 Here’s a screenshot of the app in action:  
 
-![Around The U.S. Screenshot](https://ibb.co/3Y73zJCY)
+![Around The U.S. Screenshot]- https://ibb.co/3Y73zJCY
 
 ---
 
